@@ -1,19 +1,20 @@
 {
-	"name": "dev-sculpt",
-	"private": true,
-	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
-		"lint": "turbo lint"
-	},
-	"devDependencies": {
-		"turbo": "latest"
-	},
-	"packageManager": "bun@1.1.7",
-	"workspaces": ["apps/*", "packages/*"],
-	"config": {
-		"commitizen": {
-			"path": "cz-emoji"
-		}
-	}
+  "name": "dev-sculpt",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "turbo": "latest"
+  },
+  "packageManager": "bun@1.1.7",
+  "workspaces": ["apps/*", "packages/*"],
+  "config": {
+    "commitizen": {
+      "path": "cz-emoji"
+    }
+  }
 }
