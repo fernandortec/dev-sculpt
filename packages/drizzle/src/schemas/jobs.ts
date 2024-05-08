@@ -1,7 +1,11 @@
 import { companies } from "@/schemas/companies";
 import { stages } from "@/schemas/stages";
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import {
+	type InferInsertModel,
+	type InferSelectModel,
+	relations,
+} from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const jobsSenioritySchema = pgEnum("seniority", [
@@ -23,7 +27,8 @@ export const workLocationType = pgEnum("work_location_type", [
 export const jobs = pgTable("jobs", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId()),
+		.$defaultFn(() => createId())
+		.notNull(),
 
 	name: text("name").notNull(),
 	stacks: text("stacks").array().notNull(),
@@ -31,7 +36,7 @@ export const jobs = pgTable("jobs", {
 	description: text("description").notNull(),
 	requirementes: text("requirements").array().notNull(),
 	workLocationType: workLocationType("work_location_type").notNull(),
-	
+
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 
 	companyId: text("company_id")
@@ -49,3 +54,9 @@ export const jobsRelations = relations(jobs, ({ one, many }) => ({
 	}),
 	stages: many(stages),
 }));
+
+export type Job = InferSelectModel<typeof jobs>;
+export type CreateJob = InferInsertModel<typeof jobs>;
+export interface UpdateJob extends Partial<CreateJob> {
+	id: string;
+}

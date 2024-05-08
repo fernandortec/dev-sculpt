@@ -1,15 +1,21 @@
 import { resumes } from "@/schemas/resumes";
 import { stages } from "@/schemas/stages";
-import { relations } from "drizzle-orm";
+import {
+	type InferInsertModel,
+	type InferSelectModel,
+	relations,
+} from "drizzle-orm";
 import { pgTable, text } from "drizzle-orm/pg-core";
 
 export const resumeToStage = pgTable("resumes_to_stages", {
 	resumeId: text("user_id")
 		.notNull()
-		.references(() => resumes.id),
+		.references(() => resumes.id)
+		.notNull(),
 	stageId: text("stage_id")
 		.notNull()
-		.references(() => stages.id),
+		.references(() => stages.id)
+		.notNull(),
 });
 
 export const resumesToStagesRelations = relations(resumeToStage, ({ one }) => ({
@@ -24,3 +30,6 @@ export const resumesToStagesRelations = relations(resumeToStage, ({ one }) => ({
 		relationName: "resume_to_stage_stage",
 	}),
 }));
+
+export type ResumeToStage = InferSelectModel<typeof resumeToStage>;
+export type CreateResumeToStage = InferInsertModel<typeof resumeToStage>;

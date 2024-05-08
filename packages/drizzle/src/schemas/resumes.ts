@@ -1,13 +1,18 @@
 import { experiences } from "@/schemas/experiences";
 import { users } from "@/schemas/users";
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import {
+	type InferInsertModel,
+	type InferSelectModel,
+	relations,
+} from "drizzle-orm";
 import { pgTable, text } from "drizzle-orm/pg-core";
 
 export const resumes = pgTable("resumes", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId()),
+		.$defaultFn(() => createId())
+		.notNull(),
 
 	skills: text("skills").array().notNull(),
 	emailForContact: text("email_for_contact").notNull().unique(),
@@ -28,3 +33,9 @@ export const resumesRelations = relations(resumes, ({ one, many }) => ({
 	}),
 	experiences: many(experiences),
 }));
+
+export type Resume = InferSelectModel<typeof resumes>;
+export type CreateResume = InferInsertModel<typeof resumes>;
+export interface UpdateResume extends Partial<CreateResume> {
+	id: string;
+}

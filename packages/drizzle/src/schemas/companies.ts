@@ -1,13 +1,19 @@
 import { jobs } from "@/schemas/jobs";
 import { users } from "@/schemas/users";
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import {
+	type InferInsertModel,
+	type InferSelectModel,
+	Update,
+	relations,
+} from "drizzle-orm";
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const companies = pgTable("companies", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId()),
+		.$defaultFn(() => createId())
+		.notNull(),
 
 	email: text("email").unique().notNull(),
 	logoUrl: text("logo_url"),
@@ -20,3 +26,9 @@ export const companiesRelations = relations(companies, ({ many }) => ({
 	recruiters: many(users),
 	jobs: many(jobs),
 }));
+
+export type Company = InferSelectModel<typeof companies>;
+export type CreateCompany = InferInsertModel<typeof companies>;
+export interface UpdateCompany extends Partial<CreateCompany> {
+	id: string;
+}

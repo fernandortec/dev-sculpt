@@ -1,7 +1,11 @@
 import { jobs } from "@/schemas/jobs";
 import { resumes } from "@/schemas/resumes";
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import {
+	type InferInsertModel,
+	type InferSelectModel,
+	relations,
+} from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const currentHiringStatusEnum = pgEnum("current_status", [
@@ -13,7 +17,8 @@ export const currentHiringStatusEnum = pgEnum("current_status", [
 export const hiringProcess = pgTable("hiring_process", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId()),
+		.$defaultFn(() => createId())
+		.notNull(),
 
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	currentStatus: currentHiringStatusEnum("current_status").notNull(),
@@ -44,3 +49,9 @@ export const hiringProcessRelations = relations(hiringProcess, ({ one }) => ({
 		relationName: "hiring_process_job",
 	}),
 }));
+
+export type HiringProcess = InferSelectModel<typeof hiringProcess>;
+export type CreateHiringProcess = InferInsertModel<typeof hiringProcess>;
+export interface UpdateHiringProcess extends Partial<CreateHiringProcess> {
+	id: string;
+}

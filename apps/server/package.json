@@ -1,0 +1,15 @@
+{
+	"name": "@sculpt/server",
+	"version": "0.0.1",
+	"private": true,
+	"main": "./src/server.ts",
+	"types": "./src/server.ts",
+	"dependencies": {
+		"@sculpt/env": "workspace:*",
+		"@sculpt/drizzle": "workspace:*",
+		"hono": "^4.3.3"
+	},
+	"devDependencies": {
+		"@sculpt/tsconfig": "workspace:*"
+	}
+}
