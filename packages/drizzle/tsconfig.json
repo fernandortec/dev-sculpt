@@ -1,3 +1,8 @@
 {
-	"extends": "@sculpt/tsconfig/base.json"
+	"extends": "@sculpt/tsconfig/base.json",
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	}
 }
