@@ -1,15 +1,16 @@
 {
-  "name": "@sculpt/env",
+  "name": "@sculpt/drizzle",
   "version": "0.0.1",
   "private": true,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.10.1",
-    "zod": "^3.23.7"
+    "drizzle-orm": "^0.30.10",
+    "postgres": "^3.4.4",
+    "@sculpt/env": "workspace:*"
   },
   "devDependencies": {
     "@sculpt/tsconfig": "workspace:*",
-    "@types/bun": "^1.1.1"
+    "drizzle-kit": "^0.20.18"
   }
 }
