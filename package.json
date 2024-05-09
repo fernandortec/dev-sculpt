@@ -1,23 +1,24 @@
 {
-  "name": "dev-sculpt",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "db:generate": "turbo run db:generate",
-    "db:migrate": "turbo run db:migrate",
-    "db:studio": "turbo run db:studio"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "turbo": "latest"
-  },
-  "packageManager": "bun@1.1.7",
-  "workspaces": ["apps/*", "packages/*"],
-  "config": {
-    "commitizen": {
-      "path": "cz-emoji"
-    }
-  }
+	"name": "dev-sculpt",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"db:generate": "turbo run db:generate",
+		"db:migrate": "turbo run db:migrate",
+		"db:studio": "turbo run db:studio",
+		"reset": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \"dist\" \\) -prune -exec rm -rf '{}' + && rm -rf ./node_modules && rm -rf ./.next && rm -rf ./dist"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
+		"turbo": "latest"
+	},
+	"packageManager": "bun@1.1.7",
+	"workspaces": ["apps/*", "packages/*"],
+	"config": {
+		"commitizen": {
+			"path": "cz-emoji"
+		}
+	}
 }

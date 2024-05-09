@@ -1,3 +1,4 @@
+import { makeCreateUserUseCase } from "@/use-cases/_factories/user-factories";
 import { zValidator } from "@hono/zod-validator";
 import { db, users } from "@sculpt/drizzle";
 import { Hono } from "hono";
@@ -17,10 +18,15 @@ export const createUser = new Hono().post(
 	async (c) => {
 		const { email, name, role, bio, companyId } = c.req.valid("json");
 
-		const [user] = await db
-			.insert(users)
-			.values({ email, name, role, bio, companyId })
-			.returning();
+		const createUserUseCase = makeCreateUserUseCase();
+
+		const user = await createUserUseCase.execute({
+			email,
+			name,
+			role,
+			bio,
+			companyId,
+		});
 
 		return c.json(user, 201);
 	},
