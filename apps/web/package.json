@@ -8,10 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
     "@tailwindcss/postcss": "^4.0.0-alpha.15",
-    "next": "^14.3.0-canary.50",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.378.0",
+    "next": "^14.3.0-canary.53",
     "react": "^19.0.0-beta-6946ebe620-20240508",
     "react-dom": "^19.0.0-beta-6946ebe620-20240508",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss": "^4.0.0-alpha.15"
   },
   "devDependencies": {
