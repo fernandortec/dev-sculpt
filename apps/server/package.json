@@ -5,9 +5,14 @@
 	"main": "./src/server.ts",
 	"types": "./src/server.ts",
 	"dependencies": {
-		"@sculpt/env": "workspace:*",
+		"@paralleldrive/cuid2": "^2.2.2",
 		"@sculpt/drizzle": "workspace:*",
+		"@sculpt/env": "workspace:*",
 		"hono": "^4.3.3"
+	},
+
+	"scripts": {
+		"test:e2e": "IS_E2E=Y bun --env-file=../../.env test"
 	},
 	"devDependencies": {
 		"@sculpt/tsconfig": "workspace:*"
