@@ -1,20 +1,25 @@
 {
-	"name": "@sculpt/server",
-	"version": "0.0.1",
-	"private": true,
-	"main": "./src/server.ts",
-	"types": "./src/server.ts",
-	"dependencies": {
-		"@paralleldrive/cuid2": "^2.2.2",
-		"@sculpt/drizzle": "workspace:*",
-		"@sculpt/env": "workspace:*",
-		"hono": "^4.3.3"
-	},
-
-	"scripts": {
-		"test:e2e": "IS_E2E=Y bun --env-file=../../.env test"
-	},
-	"devDependencies": {
-		"@sculpt/tsconfig": "workspace:*"
-	}
+  "name": "@sculpt/server",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/http/server.ts",
+  "types": "./src/http/server.ts",
+  "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@sculpt/drizzle": "workspace:*",
+    "@sculpt/env": "workspace:*",
+    "hono": "^4.3.3",
+    "zod": "^3.23.0-beta.2"
+  },
+  "scripts": {
+    "dev": "bun --env-file=../../.env --hot run src/http/server.ts",
+    "start": "bun --env-file=../../.env run src/http/server.ts",
+    "test:e2e": "IS_E2E=Y bun --env-file=../../.env test"
+  },
+  "devDependencies": {
+    "@sculpt/tsconfig": "workspace:*",
+    "drizzle-orm": "^0.30.10",
+    "postgres": "^3.4.4"
+  }
 }
