@@ -12,6 +12,6 @@ await migrate(db, { migrationsFolder: "migrations" });
 
 console.log("Migrations applied successfully!");
 
-await connection.end();
+connection.end()
 
 process.exit();
