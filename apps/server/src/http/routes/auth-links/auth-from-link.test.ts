@@ -8,7 +8,7 @@ describe("E2E Auth from link", () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				name: "Fake User",
-				email: "john@doe.com",
+				email: "jane@doe.com",
 				role: "jobseeker",
 				bio: null,
 				companyId: null,

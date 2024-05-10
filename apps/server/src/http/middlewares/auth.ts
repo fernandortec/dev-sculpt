@@ -3,9 +3,9 @@ import { env } from "@sculpt/env";
 import { createMiddleware } from "hono/factory";
 import { verify } from "hono/jwt";
 
-interface AuthInContext {
+export interface AuthInContext {
 	Variables: {
-		userId: string;
+		userId: { userId: string };
 	};
 }
 
@@ -16,7 +16,7 @@ export const auth = createMiddleware<AuthInContext>(
 
 		const payload = await verify(authorization, env.JWT_SECRET);
 
-		c.set("userId", payload.sub);
+		c.set("userId", { userId: payload.sub });
 
 		await next();
 	},

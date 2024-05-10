@@ -18,7 +18,7 @@ export const authFromLink = new Hono().get(
 
 		const { userId } = await authLinkUseCase.execute(code);
 
-		const token = await sign(userId, env.JWT_SECRET);
+		const token = await sign({ sub: userId }, env.JWT_SECRET);
 
 		setCookie(c, "auth", token, {
 			maxAge: 20000,
