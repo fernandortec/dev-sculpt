@@ -18,4 +18,4 @@ export const sendAuthLink = new Hono().post(
 
 		return c.json(redirectUrl);
 	},
-);
+)
