@@ -5,30 +5,55 @@ import type { AuthLinksRepository } from "@/repositories/auth-links-repository";
 import { InMemoryAuthLinksRepository } from "@/repositories/in-memory/in-memory-auth-links-repository";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user-repository";
 import type { UsersRepository } from "@/repositories/users-repository";
+import { AuthFromLinkUseCase } from "@/use-cases/auth-links/auth-from-link";
 import { SendAuthLinkUseCase } from "@/use-cases/auth-links/send-auth-link";
+import { createId } from "@paralleldrive/cuid2";
 
-describe("Send auth link use case", () => {
+describe("Auth from link use case", () => {
 	let authLinksRepository: AuthLinksRepository;
 	let usersRepository: UsersRepository;
-	let sut: SendAuthLinkUseCase;
+	let sut: AuthFromLinkUseCase;
 
 	beforeEach(() => {
 		authLinksRepository = new InMemoryAuthLinksRepository();
 		usersRepository = new InMemoryUsersRepository();
-		sut = new SendAuthLinkUseCase(authLinksRepository, usersRepository);
+		sut = new AuthFromLinkUseCase(authLinksRepository);
 	});
 
-	it("should send an auth link", async () => {
+	it("should authenticate from a link", async () => {
 		const user = await usersRepository.create({
 			email: "someemail@example.com",
 			name: "Jane doe",
 			role: "recruiter",
 		});
 
-		const authLink = await sut.execute(user.email);
+		const authLink = await authLinksRepository.create({
+			code: createId(),
+			userId: user.id,
+		});
 
-		expect(authLink).toContain("authenticate");
-		expect(authLink).toEqual(expect.any(String));
+		const authData = await sut.execute(authLink.code);
+
+		expect(authData.userId).toEqual(user.id);
+	});
+
+	it("should throw if auth link is too old", async () => {
+		const user = await usersRepository.create({
+			email: "someemail@example.com",
+			name: "Jane doe",
+			role: "recruiter",
+		});
+
+		const dateEightDaysInThePast = new Date();
+		dateEightDaysInThePast.setDate(new Date().getDate() - 8);
+
+		const invalidAuthLink = await authLinksRepository.create({
+			code: createId(),
+			userId: user.id,
+			createdAt: dateEightDaysInThePast,
+		});
+
+		expect(sut.execute(invalidAuthLink.code)).rejects.toBeInstanceOf(Error);
 	});
 
 	it("should throw if user email is invalid", async () => {

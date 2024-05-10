@@ -10,7 +10,7 @@ export class SendAuthLinkUseCase {
 		private usersRepository: UsersRepository,
 	) {}
 
-	async execute(email: string): Promise<void> {
+	async execute(email: string): Promise<string> {
 		const userExists = await this.usersRepository.getByEmail(email);
 		if (!userExists) throw new ResourceNotFoundError();
 
@@ -28,7 +28,7 @@ export class SendAuthLinkUseCase {
 		authLink.searchParams.set("code", authCode);
 		authLink.searchParams.set("redirect", env.AUTH_REDIRECT_URL);
 
-		console.log(authLink.toString());
+		return authLink.toString();
 
 		//send - mail
 	}
