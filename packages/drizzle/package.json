@@ -4,6 +4,10 @@
   "private": true,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "exports": {
+    "./pkgs": "./src/packages.ts",
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "db:generate": "bun --env-file=../../.env drizzle-kit generate:pg",
     "db:migrate": "bun --env-file=../../.env ./src/migrate.ts",
@@ -18,6 +22,6 @@
   },
   "devDependencies": {
     "@sculpt/tsconfig": "workspace:*",
-    "drizzle-kit": "^0.20.18"
+    "drizzle-kit": "^0.21.1"
   }
 }

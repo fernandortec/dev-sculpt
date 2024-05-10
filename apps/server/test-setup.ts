@@ -1,9 +1,6 @@
 import { afterEach, beforeEach } from "bun:test";
 import { createId } from "@paralleldrive/cuid2";
-import postgres from "postgres";
-import { sql } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/postgres-js";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { drizzle, migrate, postgres, sql } from "@sculpt/drizzle/pkgs";
 
 async function updateDatabaseSchemaOnTesting(): Promise<void> {
 	if (!process.env.IS_E2E) return;

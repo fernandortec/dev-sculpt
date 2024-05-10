@@ -20,8 +20,6 @@
     "test:unit": "bun --env-file=../../.env test ./src/use-cases/**/*.test.ts"
   },
   "devDependencies": {
-    "@sculpt/tsconfig": "workspace:*",
-    "drizzle-orm": "^0.30.10",
-    "postgres": "^3.4.4"
+    "@sculpt/tsconfig": "workspace:*"
   }
 }
