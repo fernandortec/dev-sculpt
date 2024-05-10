@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BlueStripes } from "@/public/assets/blue-stripes";
-import { OrangeStripes } from "@/public/assets/orange-stripes";
+import Icons from "@/public/assets/icons";
 import {
 	BriefcaseIcon,
 	FlowerIcon,
@@ -46,8 +45,8 @@ export default function Page() {
 							</Button>
 						</form>
 
-						<OrangeStripes />
-						<BlueStripes />
+						<Icons.OrangeStripes />
+						<Icons.BlueStripes />
 					</div>
 					<div className="mt-10 flex flex-wrap justify-center gap-2 sm:mt-20">
 						<Button variant="outline">
