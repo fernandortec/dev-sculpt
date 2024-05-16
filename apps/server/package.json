@@ -10,8 +10,8 @@
     "@sculpt/drizzle": "workspace:*",
     "@sculpt/env": "workspace:*",
     "dayjs": "^1.11.11",
-    "hono": "^4.3.3",
-    "zod": "^3.23.0-beta.2"
+    "hono": "^4.3.7",
+    "zod": "^3.23.8"
   },
   "scripts": {
     "dev": "bun --env-file=../../.env --hot run src/http/server.ts",
