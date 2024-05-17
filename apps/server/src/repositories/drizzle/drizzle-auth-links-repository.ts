@@ -13,7 +13,7 @@ export class DrizzleAuthLinksRepository implements AuthLinksRepository {
 		return authLink;
 	}
 
-	async findByCode(code: string): Promise<AuthLink | null> {
+	async getByCode(code: string): Promise<AuthLink | null> {
 		const [authLink] = await db
 			.select()
 			.from(authLinks)

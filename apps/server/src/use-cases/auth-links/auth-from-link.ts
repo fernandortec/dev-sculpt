@@ -10,7 +10,7 @@ export class AuthFromLinkUseCase {
 	constructor(private authLinksRepository: AuthLinksRepository) {}
 
 	async execute(code: string): Promise<AuthFromLinkUseCaseResponse> {
-		const authLink = await this.authLinksRepository.findByCode(code);
+		const authLink = await this.authLinksRepository.getByCode(code);
 		if (!authLink) throw new ResourceNotFoundError();
 
 		const daysSinceAuthLinkWasCreated = dayjs().diff(
