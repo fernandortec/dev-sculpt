@@ -27,6 +27,7 @@ export class GetOrCreateAccountUseCase {
 				email,
 				role: "jobseeker",
 				name,
+				password: null,
 			});
 		}
 

@@ -1,6 +1,7 @@
 import type { AccountsRepository } from "@/modules/accounts/repositories/accounts-repository";
+import type { CreateAccount } from "@/modules/accounts/schemas/create-account";
 import { createId } from "@paralleldrive/cuid2";
-import type { Account, CreateAccount } from "@sculpt/drizzle";
+import type { Account } from "@sculpt/drizzle";
 
 export class InMemoryAccountsRepository implements AccountsRepository {
 	private accounts: Account[] = [];
@@ -9,10 +10,9 @@ export class InMemoryAccountsRepository implements AccountsRepository {
 		provider,
 		providerAccountId,
 		userId,
-		id,
 	}: CreateAccount): Promise<Account> {
 		const account: Account = {
-			id: id ?? createId(),
+			id: createId(),
 			provider,
 			providerAccountId,
 			userId,

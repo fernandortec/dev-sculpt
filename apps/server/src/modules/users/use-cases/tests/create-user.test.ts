@@ -1,9 +1,8 @@
 import { beforeEach, describe, expect, it } from "bun:test";
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
-import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-user-repository";
-import type { UsersRepository } from "@/modules/users/users-repository";
-import { CreateUserUseCase } from "@/use-cases/user/create-user";
+import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-users-repository";
+import type { UsersRepository } from "@/modules/users/repositories/users-repository";
+import { CreateUserUseCase } from "@/modules/users/use-cases/create-user-use-case";
 
 describe("Create User use case", () => {
 	let usersRepository: UsersRepository;
@@ -19,8 +18,8 @@ describe("Create User use case", () => {
 			email: "john@doe.com",
 			name: "John doe",
 			role: "jobseeker",
-			bio: "I'm John Doe!",
-			companyId: null,
+			avatarUrl: "http://example.com/avatar.jpg",
+			password: "somepassword",
 		});
 
 		expect(user).toEqual(
@@ -33,8 +32,8 @@ describe("Create User use case", () => {
 			email: "john@doe.com",
 			name: "John doe",
 			role: "jobseeker",
-			bio: "I'm John Doe!",
-			companyId: null,
+			avatarUrl: "http://example.com/avatar.jpg",
+			password: "somepassword",
 		});
 
 		expect(
@@ -42,8 +41,8 @@ describe("Create User use case", () => {
 				email: "john@doe.com",
 				name: "John doe",
 				role: "jobseeker",
-				bio: "I'm John Doe!",
-				companyId: null,
+				avatarUrl: "http://example.com/avatar.jpg",
+				password: "somepassword",
 			}),
 		).rejects.toBeInstanceOf(ResourceAlreadyExistsError);
 	});

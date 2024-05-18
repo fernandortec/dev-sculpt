@@ -1,10 +1,6 @@
 import type { AccountsRepository } from "@/modules/accounts/repositories/accounts-repository";
-import {
-	type Account,
-	type CreateAccount,
-	accounts,
-	db,
-} from "@sculpt/drizzle";
+import type { CreateAccount } from "@/modules/accounts/schemas/create-account";
+import { type Account, accounts, db } from "@sculpt/drizzle";
 import { and, eq } from "drizzle-orm";
 
 export class DrizzleAccountsRepository implements AccountsRepository {
