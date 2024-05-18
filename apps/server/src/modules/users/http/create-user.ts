@@ -1,26 +1,16 @@
 import type { JSONResponse, OverrideDate } from "@/@types/hono";
+import { createUserSchema } from "@/modules/users/schemas/create-user";
 import { makeCreateUserUseCase } from "@/modules/users/use-cases/_factories";
 
 import { zValidator } from "@hono/zod-validator";
 import type { User } from "@sculpt/drizzle";
 import { Hono } from "hono";
-import { z } from "zod";
-
-const bodySchema = z.object({
-	name: z.string(),
-	role: z.enum(["jobseeker", "recruiter"]),
-	email: z.string().email(),
-	bio: z.string().nullable(),
-	companyId: z.string().nullable(),
-	avatarUrl: z.string().nullable(),
-});
 
 export const createUser = new Hono().post(
 	"/",
-	zValidator("json", bodySchema),
+	zValidator("json", createUserSchema),
 	async (c): Promise<JSONResponse<OverrideDate<User>>> => {
-		const { email, name, role, bio, companyId, avatarUrl } =
-			c.req.valid("json");
+		const { email, name, role, password, avatarUrl } = c.req.valid("json");
 
 		const createUserUseCase = makeCreateUserUseCase();
 
@@ -28,9 +18,8 @@ export const createUser = new Hono().post(
 			email,
 			name,
 			role,
-			bio,
-			companyId,
-			avatarUrl: avatarUrl ?? "https://example.com/avatar.png",
+			avatarUrl,
+			password,
 		});
 
 		return c.json(user, 201);

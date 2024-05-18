@@ -1,10 +1,6 @@
 import { jobs } from "@/schemas/jobs";
 import { createId } from "@paralleldrive/cuid2";
-import {
-	type InferInsertModel,
-	type InferSelectModel,
-	relations,
-} from "drizzle-orm";
+import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text } from "drizzle-orm/pg-core";
 
 export const stageStatusEnum = pgEnum("status", ["closed", "open"]);
@@ -36,7 +32,3 @@ export const stagesRelations = relations(stages, ({ one, many }) => ({
 }));
 
 export type Stage = InferSelectModel<typeof stages>;
-export type CreateStage = InferInsertModel<typeof stages>;
-export interface UpdateStage extends Partial<CreateStage> {
-	id: string;
-}

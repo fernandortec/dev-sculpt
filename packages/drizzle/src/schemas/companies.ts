@@ -1,12 +1,7 @@
 import { jobs } from "@/schemas/jobs";
 import { users } from "@/schemas/users";
 import { createId } from "@paralleldrive/cuid2";
-import {
-	type InferInsertModel,
-	type InferSelectModel,
-	Update,
-	relations,
-} from "drizzle-orm";
+import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const companies = pgTable("companies", {
@@ -28,7 +23,3 @@ export const companiesRelations = relations(companies, ({ many }) => ({
 }));
 
 export type Company = InferSelectModel<typeof companies>;
-export type CreateCompany = InferInsertModel<typeof companies>;
-export interface UpdateCompany extends Partial<CreateCompany> {
-	id: string;
-}

@@ -3,5 +3,5 @@ import { userRoutes } from "@/modules/users/http/_routes";
 import { Hono } from "hono";
 
 export const app = new Hono()
-	.route("/users", userRoutes)
-	.route("/auth", authRoutes);
+	.route("/auth", authRoutes)
+	.route("/users", userRoutes);

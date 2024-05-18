@@ -2,11 +2,7 @@ import { accounts } from "@/schemas/accounts";
 import { companies } from "@/schemas/companies";
 import { resumes } from "@/schemas/resumes";
 import { createId } from "@paralleldrive/cuid2";
-import {
-	type InferInsertModel,
-	type InferSelectModel,
-	relations,
-} from "drizzle-orm";
+import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const userRolesEnum = pgEnum("role", ["jobseeker", "recruiter"]);
@@ -46,7 +42,3 @@ export const usersRelations = relations(users, ({ one, many }) => ({
 }));
 
 export type User = InferSelectModel<typeof users>;
-export type CreateUser = InferInsertModel<typeof users>;
-export interface UpdateUser extends Partial<CreateUser> {
-	id: string;
-}

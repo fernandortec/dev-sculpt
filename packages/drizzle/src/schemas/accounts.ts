@@ -1,10 +1,6 @@
 import { users } from "@/schemas/users";
 import { createId } from "@paralleldrive/cuid2";
-import {
-	type InferInsertModel,
-	type InferSelectModel,
-	relations,
-} from "drizzle-orm";
+import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
 
 const providersEnum = pgEnum("provider", ["google", "github", "linkedin"]);
@@ -40,7 +36,3 @@ export const accountsRelation = relations(accounts, ({ one }) => ({
 }));
 
 export type Account = InferSelectModel<typeof accounts>;
-export type CreateAccount = InferInsertModel<typeof accounts>;
-export interface UpdateAccount extends Partial<CreateAccount> {
-	id: string;
-}

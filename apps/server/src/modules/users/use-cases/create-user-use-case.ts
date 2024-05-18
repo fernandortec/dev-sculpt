@@ -1,6 +1,8 @@
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
-import type { UsersRepository } from "@/modules/users/users-repository";
-import type { CreateUser, User } from "@sculpt/drizzle";
+import type { UsersRepository } from "@/modules/users/repositories/users-repository";
+import type { CreateUser } from "@/modules/users/schemas/create-user";
+import type { User } from "@sculpt/drizzle";
+import { hash } from "bcrypt-ts";
 
 export class CreateUserUseCase {
 	constructor(private usersRepository: UsersRepository) {}
@@ -9,19 +11,19 @@ export class CreateUserUseCase {
 		email,
 		name,
 		role,
-		bio,
-		companyId,
 		avatarUrl,
+		password,
 	}: CreateUser): Promise<User> {
 		const userExists = await this.usersRepository.getByEmail(email);
 		if (userExists) throw new ResourceAlreadyExistsError();
+
+		const passwordHash = await hash(password, 6);
 
 		const user = await this.usersRepository.create({
 			email,
 			name,
 			role,
-			bio,
-			companyId,
+			password: passwordHash,
 			avatarUrl,
 		});
 

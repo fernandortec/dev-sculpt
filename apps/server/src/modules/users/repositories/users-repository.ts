@@ -1,25 +1,22 @@
-import type { CreateUser, UpdateUser, User } from "@sculpt/drizzle";
+import type { CreateUser } from "@/modules/users/schemas/create-user";
+import type { UpdateUser } from "@/modules/users/schemas/update-user";
+import type { User } from "@sculpt/drizzle";
 
 export interface UsersRepository {
 	create({
 		email,
 		name,
 		role,
-		bio,
-		companyId,
-		createdAt,
-		id,
-		avatarUrl
+		avatarUrl,
 	}: CreateUser): Promise<User>;
 	update({
 		id,
 		bio,
 		companyId,
-		createdAt,
 		email,
 		name,
 		role,
-		avatarUrl
+		avatarUrl,
 	}: UpdateUser): Promise<User>;
 	getById(id: string): Promise<User | null>;
 	getByEmail(email: string): Promise<User | null>;

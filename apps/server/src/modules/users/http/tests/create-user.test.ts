@@ -10,9 +10,8 @@ describe("E2E Create user", () => {
 				name: "Fake User",
 				email: "john@doe.com",
 				role: "jobseeker",
-				bio: null,
-				companyId: null,
-				avatarUrl: null,
+				password: "anypassword",
+				avatarUrl: "https://example.com/avatar.png",
 			}),
 		});
 

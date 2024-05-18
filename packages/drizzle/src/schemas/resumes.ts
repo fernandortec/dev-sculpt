@@ -1,11 +1,7 @@
 import { experiences } from "@/schemas/experiences";
 import { users } from "@/schemas/users";
 import { createId } from "@paralleldrive/cuid2";
-import {
-	type InferInsertModel,
-	type InferSelectModel,
-	relations,
-} from "drizzle-orm";
+import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgTable, text } from "drizzle-orm/pg-core";
 
 export const resumes = pgTable("resumes", {
@@ -35,7 +31,3 @@ export const resumesRelations = relations(resumes, ({ one, many }) => ({
 }));
 
 export type Resume = InferSelectModel<typeof resumes>;
-export type CreateResume = InferInsertModel<typeof resumes>;
-export interface UpdateResume extends Partial<CreateResume> {
-	id: string;
-}

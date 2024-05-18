@@ -1,8 +1,11 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
+import type { CreateUser } from "@/modules/users/schemas/create-user";
+import type { UpdateUser } from "@/modules/users/schemas/update-user";
+import type { User } from "@sculpt/drizzle";
 
 import { createId } from "@paralleldrive/cuid2";
-import type { CreateUser, UpdateUser, User } from "@sculpt/drizzle";
+import { hash } from "bcrypt-ts";
 
 export class InMemoryUsersRepository implements UsersRepository {
 	private users: User[] = [];
@@ -10,18 +13,18 @@ export class InMemoryUsersRepository implements UsersRepository {
 		email,
 		name,
 		role,
-		bio,
-		companyId,
-		avatarUrl
+		avatarUrl,
+		password,
 	}: CreateUser): Promise<User> {
 		const user: User = {
 			id: createId(),
 			email,
 			name,
 			role,
-			avatarUrl: avatarUrl ?? null,
-			bio: bio ?? null,
-			companyId: companyId ?? null,
+			avatarUrl,
+			bio: null,
+			companyId: null,
+			passwordHash: password,
 			createdAt: new Date(),
 		};
 
@@ -33,10 +36,11 @@ export class InMemoryUsersRepository implements UsersRepository {
 		id,
 		bio,
 		companyId,
-		createdAt,
 		email,
 		name,
 		role,
+		passwordHash,
+		avatarUrl,
 	}: UpdateUser): Promise<User> {
 		const userIdx = this.users.findIndex((user) => user.id === id);
 		const user = this.users[userIdx];
@@ -47,10 +51,11 @@ export class InMemoryUsersRepository implements UsersRepository {
 			...user,
 			bio: bio ? bio : user.bio,
 			companyId: companyId ? companyId : user.companyId,
-			createdAt: createdAt ? createdAt : user.createdAt,
 			email: email ? email : user.email,
 			name: name ? name : user.name,
 			role: role ? role : user.role,
+			passwordHash: passwordHash ? passwordHash : user.passwordHash,
+			avatarUrl: avatarUrl ? avatarUrl : user.avatarUrl,
 		};
 
 		this.users[userIdx] = updatedUser;

@@ -1,11 +1,7 @@
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
-import {
-	type CreateUser,
-	type UpdateUser,
-	type User,
-	db,
-	users,
-} from "@sculpt/drizzle";
+import type { CreateUser } from "@/modules/users/schemas/create-user";
+import type { UpdateUser } from "@/modules/users/schemas/update-user";
+import { type User, db, users } from "@sculpt/drizzle";
 import { eq } from "drizzle-orm";
 
 export class DrizzleUsersRepository implements UsersRepository {
@@ -14,7 +10,7 @@ export class DrizzleUsersRepository implements UsersRepository {
 		name,
 		role,
 		avatarUrl,
-		passwordHash,
+		password,
 	}: CreateUser): Promise<User> {
 		const [user] = await db
 			.insert(users)
@@ -23,7 +19,7 @@ export class DrizzleUsersRepository implements UsersRepository {
 				name,
 				role,
 				avatarUrl,
-				passwordHash,
+				passwordHash: password,
 			})
 			.returning();
 
@@ -33,14 +29,15 @@ export class DrizzleUsersRepository implements UsersRepository {
 		id,
 		bio,
 		companyId,
-		createdAt,
 		email,
 		name,
 		role,
+		passwordHash,
+		avatarUrl,
 	}: UpdateUser): Promise<User> {
 		const [user] = await db
 			.update(users)
-			.set({ id, bio, companyId, createdAt, email, name, role })
+			.set({ id, bio, companyId, email, name, role, passwordHash, avatarUrl })
 			.returning();
 
 		return user;

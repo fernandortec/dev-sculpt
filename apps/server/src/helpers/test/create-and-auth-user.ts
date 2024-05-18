@@ -5,21 +5,28 @@ interface CreateAndAuthenticateUserResponse {
 }
 
 export async function createAndAuthenticateUser(): Promise<CreateAndAuthenticateUserResponse> {
-	const userResponse = await app.request("/users", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({
-			name: "Fake User",
-			email: "john@doe.com",
-			role: "jobseeker",
-			bio: null,
-			companyId: null,
-			avatarUrl: null,
-		}),
-	});
+		await app.request("/users", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				name: "Fake User",
+				email: "john@doe.com",
+				role: "jobseeker",
+				password: "anypassword",
+				avatarUrl: "https://example.com/avatar.png",
+			}),
+		});
 
-	const user = await userResponse.json();
+		const response = await app.request("/auth/standard", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: "john@doe.com",
+				password: "anypassword",
+			}),
+		});
 
-	// Authenticate user
-	return { token: "" };
+		const { token } = await response.json();
+
+		return { token };
 }
