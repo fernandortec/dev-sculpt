@@ -43,6 +43,13 @@
       "when": 1716051234982,
       "tag": "0005_cold_galactus",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1716051404973,
+      "tag": "0006_wooden_sleepwalker",
+      "breakpoints": true
     }
   ]
 }

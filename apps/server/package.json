@@ -9,10 +9,11 @@
     "@paralleldrive/cuid2": "^2.2.2",
     "@sculpt/drizzle": "workspace:*",
     "@sculpt/env": "workspace:*",
+    "bcrypt-ts": "^5.0.2",
     "dayjs": "^1.11.11",
+    "drizzle-orm": "^0.30.10",
     "hono": "^4.3.7",
-    "zod": "^3.23.8",
-    "drizzle-orm": "^0.30.10"
+    "zod": "^3.23.8"
   },
   "scripts": {
     "dev": "bun --env-file=../../.env --hot run src/http/server.ts",

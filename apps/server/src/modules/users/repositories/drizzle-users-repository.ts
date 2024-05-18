@@ -13,15 +13,18 @@ export class DrizzleUsersRepository implements UsersRepository {
 		email,
 		name,
 		role,
-		bio,
-		companyId,
-		createdAt,
-		id,
 		avatarUrl,
+		passwordHash,
 	}: CreateUser): Promise<User> {
 		const [user] = await db
 			.insert(users)
-			.values({ email, name, role, bio, companyId, createdAt, id, avatarUrl })
+			.values({
+				email,
+				name,
+				role,
+				avatarUrl,
+				passwordHash,
+			})
 			.returning();
 
 		return user;

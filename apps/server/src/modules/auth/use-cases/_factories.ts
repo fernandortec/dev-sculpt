@@ -1,7 +1,8 @@
 import { DrizzleAccountsRepository } from "@/modules/accounts/repositories/drizzle-accounts-repository";
-import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/get-github-access-token";
-import { GetGithubUserUseCase } from "@/modules/auth/use-cases/get-github-user";
-import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account";
+import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password-use-case";
+import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/get-github-access-token-use-case";
+import { GetGithubUserUseCase } from "@/modules/auth/use-cases/get-github-user-use-case";
+import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account-use-case";
 import { DrizzleUsersRepository } from "@/modules/users/repositories/drizzle-users-repository";
 
 export function makeGetGithubAccessTokenUseCase(): GetGithubAccessTokenUseCase {
@@ -24,4 +25,11 @@ export function makeGetOrCreateAccountUseCase(): GetOrCreateAccountUseCase {
 	);
 
 	return getOrCreateAccountUseCase;
+}
+
+export function makeAuthWithPasswordUseCase(): AuthWithPasswordUseCase {
+	const usersRepository = new DrizzleUsersRepository();
+	const authWithPasswordUseCase = new AuthWithPasswordUseCase(usersRepository);
+
+	return authWithPasswordUseCase;
 }
