@@ -1,5 +1,6 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/repositories/auth-links-repository";
+
 import dayjs from "dayjs";
 
 interface AuthFromLinkUseCaseResponse {

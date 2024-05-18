@@ -1,5 +1,6 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { UsersRepository } from "@/modules/users/users-repository";
+import type { UsersRepository } from "@/modules/users/repositories/users-repository";
+
 import { createId } from "@paralleldrive/cuid2";
 import type { CreateUser, UpdateUser, User } from "@sculpt/drizzle";
 
@@ -11,12 +12,14 @@ export class InMemoryUsersRepository implements UsersRepository {
 		role,
 		bio,
 		companyId,
+		avatarUrl
 	}: CreateUser): Promise<User> {
 		const user: User = {
 			id: createId(),
 			email,
 			name,
 			role,
+			avatarUrl: avatarUrl ?? null,
 			bio: bio ?? null,
 			companyId: companyId ?? null,
 			createdAt: new Date(),

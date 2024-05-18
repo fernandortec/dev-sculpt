@@ -1,8 +1,7 @@
 import { DrizzleAuthLinksRepository } from "@/modules/auth-links/repositories/drizzle-auth-links-repository";
+import { AuthFromLinkUseCase } from "@/modules/auth-links/use-cases/auth-from-link";
+import { SendAuthLinkUseCase } from "@/modules/auth-links/use-cases/send-auth-link";
 import { DrizzleUsersRepository } from "@/modules/users/repositories/drizzle-users-repository";
-
-import { AuthFromLinkUseCase } from "@/use-cases/auth-links/auth-from-link";
-import { SendAuthLinkUseCase } from "@/use-cases/auth-links/send-auth-link";
 
 export function makeSendAuthLinkUseCase(): SendAuthLinkUseCase {
 	const usersRepository = new DrizzleUsersRepository();

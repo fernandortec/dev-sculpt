@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { app } from "@/http/app";
+import { app } from "@/app";
 
 describe("E2E Create user", () => {
 	it("should be able to create an user", async () => {
@@ -12,10 +12,10 @@ describe("E2E Create user", () => {
 				role: "jobseeker",
 				bio: null,
 				companyId: null,
-				avatarUrl: null
+				avatarUrl: null,
 			}),
 		});
-		
+
 		const user = await response.json();
 
 		expect(user).toEqual(

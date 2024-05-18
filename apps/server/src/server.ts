@@ -1,4 +1,4 @@
-import { app } from "@/http/app";
+import { app } from "@/app";
 
 export default {
 	port: 3001,

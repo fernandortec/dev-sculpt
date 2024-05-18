@@ -1,4 +1,4 @@
-import { makeAuthFromLinkUseCase } from "@/use-cases/_factories/auth-links-factories";
+import { makeAuthFromLinkUseCase } from "@/modules/auth-links/use-cases/_factories";
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";
 import { Hono } from "hono";

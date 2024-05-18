@@ -1,5 +1,5 @@
-import { GetGithubAccessTokenUseCase } from "@/use-cases/auth/get-github-access-token";
-import { GetGithubUserUseCase } from "@/use-cases/auth/get-github-user";
+import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/get-github-access-token";
+import { GetGithubUserUseCase } from "@/modules/auth/use-cases/get-github-user";
 
 export function makeGetGithubAccessTokenUseCase(): GetGithubAccessTokenUseCase {
 	const getGithubAccessTokenUseCase = new GetGithubAccessTokenUseCase();

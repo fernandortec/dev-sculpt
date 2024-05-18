@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { app } from "@/http/app";
+import { app } from "@/app";
 
 describe("E2E Auth from link", () => {
 	it("should be able to authenticate from link", async () => {

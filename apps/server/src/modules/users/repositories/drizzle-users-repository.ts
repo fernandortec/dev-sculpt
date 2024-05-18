@@ -1,4 +1,4 @@
-import type { UsersRepository } from "@/modules/users/users-repository";
+import type { UsersRepository } from "@/modules/users/repositories/users-repository";
 import {
 	type CreateUser,
 	type UpdateUser,

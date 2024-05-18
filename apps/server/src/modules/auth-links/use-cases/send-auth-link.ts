@@ -1,6 +1,7 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
-import type { UsersRepository } from "@/modules/users/users-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/repositories/auth-links-repository";
+import type { UsersRepository } from "@/modules/users/repositories/users-repository";
+
 import { createId } from "@paralleldrive/cuid2";
 import { env } from "@sculpt/env";
 
@@ -15,8 +16,6 @@ export class SendAuthLinkUseCase {
 		if (!userExists) throw new ResourceNotFoundError();
 
 		const authCode = createId();
-
-		console.log(authCode);
 
 		await this.authLinksRepository.create({
 			code: authCode,

@@ -1,5 +1,5 @@
 import { describe, it } from "bun:test";
-import { app } from "@/http/app";
+import { app } from "@/app";
 import { env } from "@sculpt/env";
 
 describe("E2E Auth with github", () => {

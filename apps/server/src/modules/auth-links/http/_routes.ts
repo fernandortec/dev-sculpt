@@ -1,5 +1,5 @@
-import { authFromLink } from "@/http/routes/auth-links/auth-from-link";
-import { sendAuthLink } from "@/http/routes/auth-links/send-auth-link";
+import { authFromLink } from "@/modules/auth-links/http/auth-from-link";
+import { sendAuthLink } from "@/modules/auth-links/http/send-auth-link";
 import { Hono } from "hono";
 
 export const authLinksRoutes = new Hono()

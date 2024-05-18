@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
+import { app } from "@/app";
 import { createAndAuthenticateUser } from "@/helpers/test/create-and-auth-user";
-import { app } from "@/http/app";
 
 describe("E2E Get user", () => {
 	it("should be able to get an user", async () => {

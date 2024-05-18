@@ -1,7 +1,7 @@
 import {
 	makeGetGithubAccessTokenUseCase,
 	makeGetGithubUserUseCase,
-} from "@/use-cases/_factories/auth-factories";
+} from "@/modules/auth/use-cases/_factories";
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";

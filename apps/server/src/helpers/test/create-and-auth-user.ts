@@ -1,4 +1,4 @@
-import { app } from "@/http/app";
+import { app } from "@/app";
 
 interface CreateAndAuthenticateUserResponse {
 	token: string;
@@ -14,10 +14,10 @@ export async function createAndAuthenticateUser(): Promise<CreateAndAuthenticate
 			role: "jobseeker",
 			bio: null,
 			companyId: null,
-			avatarUrl: null
+			avatarUrl: null,
 		}),
 	});
-	
+
 	const user = await userResponse.json();
 
 	const authLinkResponse = await app.request("/auth-links/send", {

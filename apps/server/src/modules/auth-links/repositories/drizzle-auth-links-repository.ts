@@ -1,4 +1,4 @@
-import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/repositories/auth-links-repository";
 import {
 	type AuthLink,
 	type CreateAuthLink,
