@@ -4,7 +4,7 @@ export interface GetGithubAccessTokenResponse {
 	accessToken: string;
 }
 
-export class GetGithubAccessToken {
+export class GetGithubAccessTokenUseCase {
 	async execute(code: string): Promise<GetGithubAccessTokenResponse> {
 		const githubOauthURL = new URL(
 			"https://github.com/login/oauth/access_token",
