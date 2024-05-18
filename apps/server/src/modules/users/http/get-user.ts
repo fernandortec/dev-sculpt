@@ -1,4 +1,4 @@
-import { auth } from "@/http/middlewares/auth";
+import { auth } from "@/middlewares/auth";
 import { db, users } from "@sculpt/drizzle";
 import { eq } from "drizzle-orm";
 import { Hono } from "hono";

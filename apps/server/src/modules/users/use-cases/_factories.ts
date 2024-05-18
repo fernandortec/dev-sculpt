@@ -1,4 +1,4 @@
-import { DrizzleUsersRepository } from "@/repositories/drizzle/drizzle-users-repository";
+import { DrizzleUsersRepository } from "@/modules/users/repositories/drizzle-users-repository";
 import { CreateUserUseCase } from "@/use-cases/user/create-user";
 
 export function makeCreateUserUseCase(): CreateUserUseCase {

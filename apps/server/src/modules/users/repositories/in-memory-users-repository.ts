@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import { createId } from "@paralleldrive/cuid2";
 import type { CreateUser, UpdateUser, User } from "@sculpt/drizzle";
 

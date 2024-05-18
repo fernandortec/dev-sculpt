@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { AuthLinksRepository } from "@/repositories/auth-links-repository";
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import { createId } from "@paralleldrive/cuid2";
 import { env } from "@sculpt/env";
 

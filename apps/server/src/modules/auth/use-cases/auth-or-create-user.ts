@@ -1,4 +1,4 @@
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import type { GetGithubUserUseCaseResponse } from "@/use-cases/auth/get-github-user";
 import type { User } from "@sculpt/drizzle";
 

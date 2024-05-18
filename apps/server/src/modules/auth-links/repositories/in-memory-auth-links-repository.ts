@@ -1,4 +1,4 @@
-import type { AuthLinksRepository } from "@/repositories/auth-links-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
 import { createId } from "@paralleldrive/cuid2";
 import type { AuthLink, CreateAuthLink } from "@sculpt/drizzle";
 

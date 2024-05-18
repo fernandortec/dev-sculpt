@@ -1,5 +1,6 @@
-import { DrizzleAuthLinksRepository } from "@/repositories/drizzle/drizzle-auth-links-repository";
-import { DrizzleUsersRepository } from "@/repositories/drizzle/drizzle-users-repository";
+import { DrizzleAuthLinksRepository } from "@/modules/auth-links/repositories/drizzle-auth-links-repository";
+import { DrizzleUsersRepository } from "@/modules/users/repositories/drizzle-users-repository";
+
 import { AuthFromLinkUseCase } from "@/use-cases/auth-links/auth-from-link";
 import { SendAuthLinkUseCase } from "@/use-cases/auth-links/send-auth-link";
 

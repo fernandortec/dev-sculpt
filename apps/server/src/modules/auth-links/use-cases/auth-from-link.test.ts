@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it } from "bun:test";
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import type { AuthLinksRepository } from "@/repositories/auth-links-repository";
-import { InMemoryAuthLinksRepository } from "@/repositories/in-memory/in-memory-auth-links-repository";
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user-repository";
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { AuthLinksRepository } from "@/modules/auth-links/auth-links-repository";
+import { InMemoryAuthLinksRepository } from "@/modules/auth-links/repositories/in-memory-auth-links-repository";
+import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-user-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import { AuthFromLinkUseCase } from "@/use-cases/auth-links/auth-from-link";
 import { SendAuthLinkUseCase } from "@/use-cases/auth-links/send-auth-link";
 import { createId } from "@paralleldrive/cuid2";

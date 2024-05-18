@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "bun:test";
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user-repository";
-import type { UsersRepository } from "@/repositories/users-repository";
+import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-user-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import { CreateUserUseCase } from "@/use-cases/user/create-user";
 
 describe("Create User use case", () => {

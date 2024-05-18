@@ -1,5 +1,5 @@
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { UsersRepository } from "@/modules/users/users-repository";
 import type { CreateUser, User } from "@sculpt/drizzle";
 
 export class CreateUserUseCase {
@@ -11,7 +11,7 @@ export class CreateUserUseCase {
 		role,
 		bio,
 		companyId,
-		avatarUrl
+		avatarUrl,
 	}: CreateUser): Promise<User> {
 		const userExists = await this.usersRepository.getByEmail(email);
 		if (userExists) throw new ResourceAlreadyExistsError();
@@ -22,7 +22,7 @@ export class CreateUserUseCase {
 			role,
 			bio,
 			companyId,
-			avatarUrl
+			avatarUrl,
 		});
 
 		return user;
