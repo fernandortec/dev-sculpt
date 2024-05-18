@@ -1,10 +1,8 @@
 {
-  "id": "c1b3a5d0-9406-4cae-87d6-9c1e27ab3156",
-  "prevId": "cb45feaf-a5dd-4125-8361-3b5b673ac421",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "users": {
+    "public.users": {
       "name": "users",
       "schema": "",
       "columns": {
@@ -57,29 +55,29 @@
         "users_company_id_companies_id_fk": {
           "name": "users_company_id_companies_id_fk",
           "tableFrom": "users",
-          "tableTo": "companies",
           "columnsFrom": [
             "company_id"
           ],
+          "tableTo": "companies",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "set null"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "users_email_unique": {
           "name": "users_email_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     },
-    "companies": {
+    "public.companies": {
       "name": "companies",
       "schema": "",
       "columns": {
@@ -121,21 +119,21 @@
       "uniqueConstraints": {
         "companies_email_unique": {
           "name": "companies_email_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ]
+          ],
+          "nullsNotDistinct": false
         },
         "companies_corporate_tax_code_unique": {
           "name": "companies_corporate_tax_code_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "corporate_tax_code"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     },
-    "hiring_process": {
+    "public.hiring_process": {
       "name": "hiring_process",
       "schema": "",
       "columns": {
@@ -182,34 +180,34 @@
         "hiring_process_resume_id_resumes_id_fk": {
           "name": "hiring_process_resume_id_resumes_id_fk",
           "tableFrom": "hiring_process",
-          "tableTo": "resumes",
           "columnsFrom": [
             "resume_id"
           ],
+          "tableTo": "resumes",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "hiring_process_job_id_jobs_id_fk": {
           "name": "hiring_process_job_id_jobs_id_fk",
           "tableFrom": "hiring_process",
-          "tableTo": "jobs",
           "columnsFrom": [
             "job_id"
           ],
+          "tableTo": "jobs",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "jobs": {
+    "public.jobs": {
       "name": "jobs",
       "schema": "",
       "columns": {
@@ -274,21 +272,21 @@
         "jobs_company_id_companies_id_fk": {
           "name": "jobs_company_id_companies_id_fk",
           "tableFrom": "jobs",
-          "tableTo": "companies",
           "columnsFrom": [
             "company_id"
           ],
+          "tableTo": "companies",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "resumes": {
+    "public.resumes": {
       "name": "resumes",
       "schema": "",
       "columns": {
@@ -328,36 +326,36 @@
         "resumes_user_id_users_id_fk": {
           "name": "resumes_user_id_users_id_fk",
           "tableFrom": "resumes",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "resumes_email_for_contact_unique": {
           "name": "resumes_email_for_contact_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "email_for_contact"
-          ]
+          ],
+          "nullsNotDistinct": false
         },
         "resumes_phone_number_unique": {
           "name": "resumes_phone_number_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "phone_number"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     },
-    "stages": {
+    "public.stages": {
       "name": "stages",
       "schema": "",
       "columns": {
@@ -404,21 +402,21 @@
         "stages_job_id_jobs_id_fk": {
           "name": "stages_job_id_jobs_id_fk",
           "tableFrom": "stages",
-          "tableTo": "jobs",
           "columnsFrom": [
             "job_id"
           ],
+          "tableTo": "jobs",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "resumes_to_stages": {
+    "public.resumes_to_stages": {
       "name": "resumes_to_stages",
       "schema": "",
       "columns": {
@@ -440,34 +438,34 @@
         "resumes_to_stages_user_id_resumes_id_fk": {
           "name": "resumes_to_stages_user_id_resumes_id_fk",
           "tableFrom": "resumes_to_stages",
-          "tableTo": "resumes",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "resumes",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "resumes_to_stages_stage_id_stages_id_fk": {
           "name": "resumes_to_stages_stage_id_stages_id_fk",
           "tableFrom": "resumes_to_stages",
-          "tableTo": "stages",
           "columnsFrom": [
             "stage_id"
           ],
+          "tableTo": "stages",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "experiences": {
+    "public.experiences": {
       "name": "experiences",
       "schema": "",
       "columns": {
@@ -513,15 +511,15 @@
         "experiences_resume_id_resumes_id_fk": {
           "name": "experiences_resume_id_resumes_id_fk",
           "tableFrom": "experiences",
-          "tableTo": "resumes",
           "columnsFrom": [
             "resume_id"
           ],
+          "tableTo": "resumes",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -529,53 +527,60 @@
     }
   },
   "enums": {
-    "role": {
+    "public.role": {
       "name": "role",
-      "values": {
-        "jobseeker": "jobseeker",
-        "recruiter": "recruiter"
-      }
+      "schema": "public",
+      "values": [
+        "jobseeker",
+        "recruiter"
+      ]
     },
-    "current_status": {
+    "public.current_status": {
       "name": "current_status",
-      "values": {
-        "approved": "approved",
-        "rejected": "rejected",
-        "in_progress": "in_progress"
-      }
+      "schema": "public",
+      "values": [
+        "approved",
+        "rejected",
+        "in_progress"
+      ]
     },
-    "seniority": {
+    "public.seniority": {
       "name": "seniority",
-      "values": {
-        "intern": "intern",
-        "junior": "junior",
-        "mid-level": "mid-level",
-        "senior": "senior",
-        "lead": "lead",
-        "manager": "manager",
-        "cto": "cto"
-      }
+      "schema": "public",
+      "values": [
+        "intern",
+        "junior",
+        "mid-level",
+        "senior",
+        "lead",
+        "manager",
+        "cto"
+      ]
     },
-    "work_location_type": {
+    "public.work_location_type": {
       "name": "work_location_type",
-      "values": {
-        "remote": "remote",
-        "on-site": "on-site",
-        "hybrid": "hybrid"
-      }
+      "schema": "public",
+      "values": [
+        "remote",
+        "on-site",
+        "hybrid"
+      ]
     },
-    "status": {
+    "public.status": {
       "name": "status",
-      "values": {
-        "closed": "closed",
-        "open": "open"
-      }
+      "schema": "public",
+      "values": [
+        "closed",
+        "open"
+      ]
     }
   },
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "c1b3a5d0-9406-4cae-87d6-9c1e27ab3156",
+  "prevId": "cb45feaf-a5dd-4125-8361-3b5b673ac421"
 }

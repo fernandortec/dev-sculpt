@@ -12,6 +12,7 @@ describe("E2E Auth from link", () => {
 				role: "jobseeker",
 				bio: null,
 				companyId: null,
+				avatarUrl: null,
 			}),
 		});
 

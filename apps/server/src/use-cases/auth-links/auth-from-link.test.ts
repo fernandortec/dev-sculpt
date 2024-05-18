@@ -25,6 +25,7 @@ describe("Auth from link use case", () => {
 			email: "someemail@example.com",
 			name: "Jane doe",
 			role: "recruiter",
+			avatarUrl: "https://fakeimageurl.com",
 		});
 
 		const authLink = await authLinksRepository.create({
@@ -42,6 +43,7 @@ describe("Auth from link use case", () => {
 			email: "someemail@example.com",
 			name: "Jane doe",
 			role: "recruiter",
+			avatarUrl: "https://fakeimageurl.com",
 		});
 
 		const dateEightDaysInThePast = new Date();

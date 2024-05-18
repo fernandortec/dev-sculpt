@@ -11,6 +11,7 @@ export class CreateUserUseCase {
 		role,
 		bio,
 		companyId,
+		avatarUrl
 	}: CreateUser): Promise<User> {
 		const userExists = await this.usersRepository.getByEmail(email);
 		if (userExists) throw new ResourceAlreadyExistsError();
@@ -21,6 +22,7 @@ export class CreateUserUseCase {
 			role,
 			bio,
 			companyId,
+			avatarUrl
 		});
 
 		return user;

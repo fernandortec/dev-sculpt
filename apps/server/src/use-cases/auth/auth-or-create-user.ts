@@ -1,10 +1,11 @@
 import type { UsersRepository } from "@/repositories/users-repository";
 import type { GetGithubUserUseCaseResponse } from "@/use-cases/auth/get-github-user";
+import type { User } from "@sculpt/drizzle";
 
 type GithubUser = GetGithubUserUseCaseResponse["user"];
 
 interface AuthOrCreateUserResponse {
-	id: string;
+	user: User;
 }
 
 export class AuthOrCreateUser {
@@ -13,17 +14,18 @@ export class AuthOrCreateUser {
 	async execute({
 		avatarUrl,
 		email,
-		githubId,
 		name,
-	}: GithubUser): Promise<void> {
+	}: GithubUser): Promise<AuthOrCreateUserResponse> {
 		const userExists = await this.usersRepository.getByEmail(email);
-		if (userExists) return;
+		if (userExists) return { user: userExists };
 
-    await this.usersRepository.create({
-      avatarUrl,
-      email,
-      githubId,
-      name,
-    });
+		const user = await this.usersRepository.create({
+			avatarUrl,
+			email,
+			role: "jobseeker",
+			name,
+		});
+
+		return { user };
 	}
 }

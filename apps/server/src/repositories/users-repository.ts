@@ -9,6 +9,7 @@ export interface UsersRepository {
 		companyId,
 		createdAt,
 		id,
+		avatarUrl
 	}: CreateUser): Promise<User>;
 	update({
 		id,
@@ -18,6 +19,7 @@ export interface UsersRepository {
 		email,
 		name,
 		role,
+		avatarUrl
 	}: UpdateUser): Promise<User>;
 	getById(id: string): Promise<User | null>;
 	getByEmail(email: string): Promise<User | null>;

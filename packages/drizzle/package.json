@@ -9,7 +9,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "db:generate": "bun --env-file=../../.env drizzle-kit generate:pg",
+    "db:generate": "bun --env-file=../../.env drizzle-kit generate",
     "db:migrate": "bun --env-file=../../.env ./src/migrate.ts",
     "db:studio": "bun --env-file=../../.env drizzle-kit studio"
   },

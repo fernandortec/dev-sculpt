@@ -11,13 +11,15 @@ const bodySchema = z.object({
 	email: z.string().email(),
 	bio: z.string().nullable(),
 	companyId: z.string().nullable(),
+	avatarUrl: z.string().nullable(),
 });
 
 export const createUser = new Hono().post(
 	"/",
 	zValidator("json", bodySchema),
 	async (c): Promise<JSONResponse<OverrideDate<User>>> => {
-		const { email, name, role, bio, companyId } = c.req.valid("json");
+		const { email, name, role, bio, companyId, avatarUrl } =
+			c.req.valid("json");
 
 		const createUserUseCase = makeCreateUserUseCase();
 
@@ -27,6 +29,7 @@ export const createUser = new Hono().post(
 			role,
 			bio,
 			companyId,
+			avatarUrl: avatarUrl ?? "https://example.com/avatar.png",
 		});
 
 		return c.json(user, 201);

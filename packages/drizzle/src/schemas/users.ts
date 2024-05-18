@@ -1,3 +1,4 @@
+import { accounts } from "@/schemas/account";
 import { companies } from "@/schemas/companies";
 import { resumes } from "@/schemas/resumes";
 import { createId } from "@paralleldrive/cuid2";
@@ -20,6 +21,7 @@ export const users = pgTable("users", {
 	role: userRolesEnum("role").notNull(),
 	name: text("name").notNull(),
 	email: text("email").unique().notNull(),
+	avatarUrl: text("avatar_url").notNull(),
 
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 
@@ -28,7 +30,7 @@ export const users = pgTable("users", {
 	}),
 });
 
-export const usersRelations = relations(users, ({ one }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
 	company: one(companies, {
 		fields: [users.companyId],
 		references: [companies.id],
@@ -39,6 +41,7 @@ export const usersRelations = relations(users, ({ one }) => ({
 		references: [resumes.userId],
 		relationName: "user_resume",
 	}),
+	accounts: many(accounts),
 }));
 
 export type User = InferSelectModel<typeof users>;

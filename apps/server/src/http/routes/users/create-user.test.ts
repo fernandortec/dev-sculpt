@@ -12,9 +12,10 @@ describe("E2E Create user", () => {
 				role: "jobseeker",
 				bio: null,
 				companyId: null,
+				avatarUrl: null
 			}),
 		});
-
+		
 		const user = await response.json();
 
 		expect(user).toEqual(

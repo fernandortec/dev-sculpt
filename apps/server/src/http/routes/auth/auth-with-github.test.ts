@@ -3,7 +3,7 @@ import { app } from "@/http/app";
 import { env } from "@sculpt/env";
 
 describe("E2E Auth with github", () => {
-	const mockCode = "001fcd265878fc3993fa"; // Access https://github.com/login/oauth/authorize to fill
+	const mockCode = "6bdb67da620364ea8025"; // Access https://github.com/login/oauth/authorize to fill
 	it("should be able to authenticate with github", async () => {
 		const response = await app.request("/users", {
 			method: "POST",
@@ -27,5 +27,6 @@ describe("E2E Auth with github", () => {
 		);
 
 		const githubUser = await authWithGithubResponse.json();
+		console.log(githubUser);
 	});
 });
