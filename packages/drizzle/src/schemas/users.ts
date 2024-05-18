@@ -1,4 +1,4 @@
-import { accounts } from "@/schemas/account";
+import { accounts } from "@/schemas/accounts";
 import { companies } from "@/schemas/companies";
 import { resumes } from "@/schemas/resumes";
 import { createId } from "@paralleldrive/cuid2";
