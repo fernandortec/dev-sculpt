@@ -1,27 +1,36 @@
+import type { JSONResponse } from "@/@types/hono";
 import {
 	makeGetGithubAccessTokenUseCase,
 	makeGetGithubUserUseCase,
+	makeGetOrCreateAccountUseCase,
 } from "@/modules/auth/use-cases/_factories";
 import { zValidator } from "@hono/zod-validator";
+import { env } from "@sculpt/env";
 import { Hono } from "hono";
+import { sign } from "hono/jwt";
 import { z } from "zod";
 
-const querySchema = z.object({ code: z.string() });
+type Response = JSONResponse<{ token: string }>;
 
-export const authWithGithub = new Hono().get(
+const bodySchema = z.object({ code: z.string() });
+
+export const authWithGithub = new Hono().post(
 	"/github",
-	zValidator("query", querySchema),
-	async (c) => {
-		const { code } = c.req.valid("query");
+	zValidator("json", bodySchema),
+	async (c): Promise<Response> => {
+		const { code } = c.req.valid("json");
 
 		const getGithubAccessTokenUseCase = makeGetGithubAccessTokenUseCase();
 		const getGithubUserUseCase = makeGetGithubUserUseCase();
+		const getOrCreateAccountUseCase = makeGetOrCreateAccountUseCase();
 
 		const { accessToken } = await getGithubAccessTokenUseCase.execute(code);
-		const { user } = await getGithubUserUseCase.execute(accessToken);
+		const { user: githubUser } = await getGithubUserUseCase.execute(accessToken);
 
-		console.log(user);
+		const { userId } = await getOrCreateAccountUseCase.execute(githubUser);
 
-		return c.json({ user });
+		const token = await sign({ sub: userId }, env.JWT_SECRET);
+
+		return c.json({ token });
 	},
 );

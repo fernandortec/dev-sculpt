@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "@sculpt/tsconfig": "workspace:*",
-    "drizzle-kit": "^0.21.1"
+    "drizzle-kit": "^0.21.2"
   }
 }

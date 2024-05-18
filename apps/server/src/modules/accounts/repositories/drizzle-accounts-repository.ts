@@ -5,7 +5,7 @@ import {
 	accounts,
 	db,
 } from "@sculpt/drizzle";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export class DrizzleAccountsRepository implements AccountsRepository {
 	async create({
@@ -19,12 +19,15 @@ export class DrizzleAccountsRepository implements AccountsRepository {
 
 		return account;
 	}
-	async getById(id: string): Promise<Account | null> {
+	async getByUser(
+		provider: "github" | "google" | "linkedin",
+		userId: string,
+	): Promise<Account | null> {
 		const [account] = await db
 			.select()
 			.from(accounts)
-			.where(eq(accounts.id, id));
+			.where(and(eq(accounts.provider, provider), eq(accounts.userId, userId)));
 
-		return account;
+		return account ?? null;
 	}
 }

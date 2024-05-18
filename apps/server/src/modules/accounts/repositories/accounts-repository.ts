@@ -7,5 +7,8 @@ export interface AccountsRepository {
 		userId,
 		id,
 	}: CreateAccount): Promise<Account>;
-	getById(id: string): Promise<Account | null>;
+	getByUser(
+		provider: "github" | "google" | "linkedin",
+		userId: string,
+	): Promise<Account | null>;
 }

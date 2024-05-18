@@ -23,7 +23,14 @@ export class InMemoryAccountsRepository implements AccountsRepository {
 		return account;
 	}
 
-	async getById(id: string): Promise<Account | null> {
-		return this.accounts.find((account) => account.id === id) ?? null;
+	async getByUser(
+		provider: "github" | "google" | "linkedin",
+		userId: string,
+	): Promise<Account | null> {
+		return (
+			this.accounts.find(
+				(account) => account.provider === provider && account.userId === userId,
+			) ?? null
+		);
 	}
 }

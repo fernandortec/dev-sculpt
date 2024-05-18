@@ -27,7 +27,7 @@ export const accounts = pgTable(
 	(table) => ({
 		providerUserIdUniqueness: uniqueIndex(
 			"accounts_provider_user_id_unique",
-		).on(table.userId, table.provider),
+		).on(table.provider, table.userId),
 	}),
 );
 
