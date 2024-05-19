@@ -9,9 +9,13 @@ export const env = createEnv({
 		AUTH_REDIRECT_URL: z.string().url(),
 		JWT_SECRET: z.string(),
 
+		OAUTH_REDIRECT_URL: z.string().url(),
+
 		GITHUB_OAUTH_CLIENT_ID: z.string(),
-		GITHUB_OAUTH_CLIENT_SECRET: z.string(),
-		GITHUB_OAUTH_REDIRECT_URL: z.string().url(),
+		GITHUB_OAUTH_SECRET_ID: z.string(),
+
+		GOOGLE_OAUTH_CLIENT_ID: z.string(),
+		GOOGLE_OAUTH_SECRET_ID: z.string(),
 	},
 	client: {},
 	shared: {},
@@ -23,8 +27,11 @@ export const env = createEnv({
 		AUTH_REDIRECT_URL: process.env.AUTH_REDIRECT_URL,
 
 		GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
-		GITHUB_OAUTH_CLIENT_SECRET: process.env.GITHUB_OAUTH_CLIENT_SECRET,
-		GITHUB_OAUTH_REDIRECT_URL: process.env.GITHUB_OAUTH_REDIRECT_URL,
+		GITHUB_OAUTH_SECRET_ID: process.env.GITHUB_OAUTH_SECRET_ID,
+		OAUTH_REDIRECT_URL: process.env.OAUTH_REDIRECT_URL,
+
+		GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+		GOOGLE_OAUTH_SECRET_ID: process.env.GOOGLE_OAUTH_SECRET_ID,
 	},
 	emptyStringAsUndefined: true,
 });

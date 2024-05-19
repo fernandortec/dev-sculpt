@@ -1,10 +1,5 @@
 import type { JSONResponse } from "@/@types/hono";
-import {
-	makeAuthWithPasswordUseCase,
-	makeGetGithubAccessTokenUseCase,
-	makeGetGithubUserUseCase,
-	makeGetOrCreateAccountUseCase,
-} from "@/modules/auth/use-cases/_factories";
+import { makeAuthWithPasswordUseCase } from "@/modules/auth/use-cases/_factories";
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";
 import { Hono } from "hono";

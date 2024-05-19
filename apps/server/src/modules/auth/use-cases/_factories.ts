@@ -1,5 +1,7 @@
 import { DrizzleAccountsRepository } from "@/modules/accounts/repositories/drizzle-accounts-repository";
+
 import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password-use-case";
+import { GenerateGoogleAuthorizationUrlUseCase } from "@/modules/auth/use-cases/generate-google-auth-url-se-case";
 import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/get-github-access-token-use-case";
 import { GetGithubUserUseCase } from "@/modules/auth/use-cases/get-github-user-use-case";
 import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account-use-case";
@@ -32,4 +34,11 @@ export function makeAuthWithPasswordUseCase(): AuthWithPasswordUseCase {
 	const authWithPasswordUseCase = new AuthWithPasswordUseCase(usersRepository);
 
 	return authWithPasswordUseCase;
+}
+
+export function makeGenerateGoogleAuthUrlUseCase(): GenerateGoogleAuthorizationUrlUseCase {
+	const generateGoogleAuthorizationUrlUseCase =
+		new GenerateGoogleAuthorizationUrlUseCase();
+
+	return generateGoogleAuthorizationUrlUseCase;
 }
