@@ -1,15 +1,9 @@
 import { EmailMustBeSetError } from "@/errors/email-must-be-set-error";
-import { GithubCodeInvalidError } from "@/errors/github-code-invalid-error";
-
-export interface GithubUser {
-	githubId: string;
-	avatarUrl: string;
-	email: string;
-	name: string;
-}
+import { OauthCodeInvalidError } from "@/errors/oauth-code-invalid-error";
+import type { OauthUser } from "@/modules/auth/schemas/oauth-user";
 
 export interface GetGithubUserUseCaseResponse {
-	user: GithubUser;
+	user: OauthUser;
 }
 
 export class GetGithubUserUseCase {
@@ -25,9 +19,9 @@ export class GetGithubUserUseCase {
 			name,
 		} = await githubUserResponse.json();
 
-		if (!githubId) throw new GithubCodeInvalidError();
+		if (!githubId) throw new OauthCodeInvalidError();
 		if (!email || email === null) throw new EmailMustBeSetError();
 
-		return { user: { githubId, avatarUrl, email, name } };
+		return { user: { id: githubId, avatarUrl, email, name } };
 	}
 }

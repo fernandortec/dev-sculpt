@@ -1,8 +1,6 @@
 import type { AccountsRepository } from "@/modules/accounts/repositories/accounts-repository";
-import type { GetGithubUserUseCaseResponse } from "@/modules/auth/use-cases/get-github-user-use-case";
+import type { OauthUser } from "@/modules/auth/schemas/oauth-user";
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
-
-type GithubUser = GetGithubUserUseCaseResponse["user"];
 
 interface GetOrCreateAccountUseCaseResponse {
 	userId: string;
@@ -18,8 +16,8 @@ export class GetOrCreateAccountUseCase {
 		avatarUrl,
 		email,
 		name,
-		githubId,
-	}: GithubUser): Promise<GetOrCreateAccountUseCaseResponse> {
+		id,
+	}: OauthUser): Promise<GetOrCreateAccountUseCaseResponse> {
 		let user = await this.usersRepository.getByEmail(email);
 		if (!user) {
 			user = await this.usersRepository.create({
@@ -39,7 +37,7 @@ export class GetOrCreateAccountUseCase {
 		if (!accountExists) {
 			await this.accountsRepository.create({
 				provider: "github",
-				providerAccountId: githubId,
+				providerAccountId: id,
 				userId: user.id,
 			});
 		}

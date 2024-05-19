@@ -7,7 +7,7 @@ import type { User } from "@sculpt/drizzle";
 import { Hono } from "hono";
 
 export const createUser = new Hono().post(
-	"/",
+	"/users",
 	zValidator("json", createUserSchema),
 	async (c): Promise<JSONResponse<OverrideDate<User>>> => {
 		const { email, name, role, password, avatarUrl } = c.req.valid("json");

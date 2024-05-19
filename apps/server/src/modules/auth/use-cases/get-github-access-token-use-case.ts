@@ -1,4 +1,4 @@
-import { GithubCodeInvalidError } from "@/errors/github-code-invalid-error";
+import { OauthCodeInvalidError } from "@/errors/oauth-code-invalid-error";
 import { env } from "@sculpt/env";
 
 export interface GetGithubAccessTokenResponse {
@@ -17,7 +17,10 @@ export class GetGithubAccessTokenUseCase {
 			"client_secret",
 			env.GITHUB_OAUTH_SECRET_ID,
 		);
-		githubOauthURL.searchParams.set("redirect_url", env.OAUTH_REDIRECT_URL);
+		githubOauthURL.searchParams.set(
+			"redirect_url",
+			env.GITHUB_OAUTH_REDIRECT_URL,
+		);
 
 		const githubAccessTokenResponse = await fetch(githubOauthURL, {
 			method: "POST",
@@ -28,7 +31,7 @@ export class GetGithubAccessTokenUseCase {
 		const { access_token: accessToken } =
 			await githubAccessTokenResponse.json();
 
-		if (!accessToken) throw new GithubCodeInvalidError();
+		if (!accessToken) throw new OauthCodeInvalidError();
 
 		return { accessToken };
 	}

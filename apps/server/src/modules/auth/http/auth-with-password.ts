@@ -14,7 +14,7 @@ const bodySchema = z.object({
 });
 
 export const authWithPassword = new Hono().post(
-	"/standard",
+	"/auth/standard",
 	zValidator("json", bodySchema),
 	async (c): Promise<Response> => {
 		const { email, password } = c.req.valid("json");

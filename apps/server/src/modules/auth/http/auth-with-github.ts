@@ -15,7 +15,7 @@ type Response = JSONResponse<{ token: string }>;
 const bodySchema = z.object({ code: z.string() });
 
 export const authWithGithub = new Hono().post(
-	"/github",
+	"/auth/github",
 	zValidator("json", bodySchema),
 	async (c): Promise<Response> => {
 		const { code } = c.req.valid("json");
