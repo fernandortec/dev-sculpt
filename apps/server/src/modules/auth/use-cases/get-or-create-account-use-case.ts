@@ -6,6 +6,11 @@ interface GetOrCreateAccountUseCaseResponse {
 	userId: string;
 }
 
+interface GetOrCreateAccountUseCaseParams {
+	provider: "github" | "linkedin" | "google";
+	user: OauthUser;
+}
+
 export class GetOrCreateAccountUseCase {
 	constructor(
 		private usersRepository: UsersRepository,
@@ -13,11 +18,11 @@ export class GetOrCreateAccountUseCase {
 	) {}
 
 	async execute({
-		avatarUrl,
-		email,
-		name,
-		id,
-	}: OauthUser): Promise<GetOrCreateAccountUseCaseResponse> {
+		user: oauthUser,
+		provider,
+	}: GetOrCreateAccountUseCaseParams): Promise<GetOrCreateAccountUseCaseResponse> {
+		const { avatarUrl, email, id, name } = oauthUser;
+
 		let user = await this.usersRepository.getByEmail(email);
 		if (!user) {
 			user = await this.usersRepository.create({
@@ -29,10 +34,10 @@ export class GetOrCreateAccountUseCase {
 			});
 		}
 
-		const accountExists = await this.accountsRepository.getByUser(
-			"github",
-			user.id,
-		);
+		const accountExists = await this.accountsRepository.getByUser({
+			provider,
+			userId: user.id,
+		});
 
 		if (!accountExists) {
 			await this.accountsRepository.create({

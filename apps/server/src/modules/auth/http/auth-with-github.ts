@@ -25,9 +25,13 @@ export const authWithGithub = new Hono().post(
 		const getOrCreateAccountUseCase = makeGetOrCreateAccountUseCase();
 
 		const { accessToken } = await getGithubAccessTokenUseCase.execute(code);
-		const { user: githubUser } = await getGithubUserUseCase.execute(accessToken);
+		const { user: githubUser } =
+			await getGithubUserUseCase.execute(accessToken);
 
-		const { userId } = await getOrCreateAccountUseCase.execute(githubUser);
+		const { userId } = await getOrCreateAccountUseCase.execute({
+			user: githubUser,
+			provider: "github",
+		});
 
 		const token = await sign({ sub: userId }, env.JWT_SECRET);
 

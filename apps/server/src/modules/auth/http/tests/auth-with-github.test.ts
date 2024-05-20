@@ -1,9 +1,11 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
 
+//https://github.com/login/oauth/authorize?client_id=Ov23li7ArTomAM9romgb&redirect_url=http://localhost:3000/signup
+
 describe("E2E Auth with github", () => {
-	const mockCode = "0892f41babbd46c5698b";
-	
+	const mockCode = "48309ed689de01247c73";
+
 	it.skip("should be able to authenticate with github", async () => {
 		const response = await app.request("/auth/github", {
 			method: "POST",

@@ -16,6 +16,10 @@ export const env = createEnv({
 		GOOGLE_OAUTH_CLIENT_ID: z.string(),
 		GOOGLE_OAUTH_SECRET_ID: z.string(),
 		GOOGLE_OAUTH_REDIRECT_URL: z.string().url(),
+
+	LINKEDIN_OAUTH_CLIENT_ID: z.string(),
+	LINKEDIN_OAUTH_SECRET_ID: z.string(),
+	LINKEDIN_OAUTH_REDIRECT_URL: z.string().url(),
 	},
 	client: {},
 	shared: {},
@@ -33,6 +37,10 @@ export const env = createEnv({
 		GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
 		GOOGLE_OAUTH_SECRET_ID: process.env.GOOGLE_OAUTH_SECRET_ID,
 		GOOGLE_OAUTH_REDIRECT_URL: process.env.GOOGLE_OAUTH_REDIRECT_URL,
+
+		LINKEDIN_OAUTH_CLIENT_ID: process.env.LINKEDIN_OAUTH_CLIENT_ID,
+		LINKEDIN_OAUTH_SECRET_ID: process.env.LINKEDIN_OAUTH_SECRET_ID,
+		LINKEDIN_OAUTH_REDIRECT_URL: process.env.LINKEDIN_OAUTH_REDIRECT_URL,
 	},
 	emptyStringAsUndefined: true,
 });

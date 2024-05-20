@@ -15,8 +15,8 @@ export class GetGoogleUserUseCase {
 			auth: googleOauthClient,
 			version: "v2",
 		});
-
-		const { data } = await oauth2.userinfo.get({});
+		
+		const { data } = await oauth2.userinfo.get();
 		if (!data.email) throw new EmailMustBeSetError();
 
 		return {

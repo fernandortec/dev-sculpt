@@ -1,7 +1,7 @@
 import type { JSONResponse } from "@/@types/hono";
 import {
-	makeGetGoogleAccessTokenUseCase,
-	makeGetGoogleUserUseCase,
+	makeGetLinkedinAccessTokenUseCase,
+	makeGetLinkedinUserUseCase,
 	makeGetOrCreateAccountUseCase,
 } from "@/modules/auth/use-cases/_factories";
 import { zValidator } from "@hono/zod-validator";
@@ -13,18 +13,19 @@ import { z } from "zod";
 type Response = JSONResponse<{ token: string }>;
 const bodySchema = z.object({ code: z.string() });
 
-export const authWithGoogle = new Hono().post(
-	"/auth/google",
+export const authWithLinkedin = new Hono().post(
+	"/auth/linkedin",
 	zValidator("json", bodySchema),
 	async (c): Promise<Response> => {
 		const { code } = c.req.valid("json");
 
-		const getGoogleAccessTokenUseCase = makeGetGoogleAccessTokenUseCase();
-		const getGoogleUserUseCase = makeGetGoogleUserUseCase();
+		const getLinkedinAccessTokenUseCase = makeGetLinkedinAccessTokenUseCase();
+		const getLinkedinUserUseCase = makeGetLinkedinUserUseCase();
 		const getOrCreateAccountUseCase = makeGetOrCreateAccountUseCase();
 
-		const { accessToken } = await getGoogleAccessTokenUseCase.execute(code);
-		const { user: oauthUser } = await getGoogleUserUseCase.execute(accessToken);
+		const { accessToken } = await getLinkedinAccessTokenUseCase.execute(code);
+		const { user: oauthUser } =
+			await getLinkedinUserUseCase.execute(accessToken);
 
 		const { userId } = await getOrCreateAccountUseCase.execute({
 			user: oauthUser,

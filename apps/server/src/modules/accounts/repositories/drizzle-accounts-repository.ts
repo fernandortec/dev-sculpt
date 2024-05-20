@@ -1,5 +1,6 @@
 import type { AccountsRepository } from "@/modules/accounts/repositories/accounts-repository";
 import type { CreateAccount } from "@/modules/accounts/schemas/create-account";
+import type { GetByUser } from "@/modules/accounts/schemas/get-by-user";
 import { type Account, accounts, db } from "@sculpt/drizzle";
 import { and, eq } from "drizzle-orm";
 
@@ -15,10 +16,7 @@ export class DrizzleAccountsRepository implements AccountsRepository {
 
 		return account;
 	}
-	async getByUser(
-		provider: "github" | "google" | "linkedin",
-		userId: string,
-	): Promise<Account | null> {
+	async getByUser({ provider, userId }: GetByUser): Promise<Account | null> {
 		const [account] = await db
 			.select()
 			.from(accounts)

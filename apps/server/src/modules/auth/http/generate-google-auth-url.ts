@@ -7,7 +7,6 @@ export const generateGoogleAuthUrl = new Hono().get(
 		const generateGoogleAuthUrlUseCase = makeGenerateGoogleAuthUrlUseCase();
 
 		const { url } = await generateGoogleAuthUrlUseCase.execute();
-		console.log(`url - ${url}`);
 
 		return c.redirect(url);
 	},

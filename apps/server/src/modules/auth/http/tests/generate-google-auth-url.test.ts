@@ -6,7 +6,7 @@ describe("E2E Generate google auth URL", () => {
 		const response = await app.request("/auth/google", {
 			headers: { "Content-Type": "application/json" },
 		});
-		
+
 		expect(response.status).toBe(302);
 		expect(response.headers.get("location")).toEqual(expect.any(String));
 	});

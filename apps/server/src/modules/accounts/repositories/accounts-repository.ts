@@ -1,4 +1,5 @@
 import type { CreateAccount } from "@/modules/accounts/schemas/create-account";
+import type { GetByUser } from "@/modules/accounts/schemas/get-by-user";
 import type { Account } from "@sculpt/drizzle";
 
 export interface AccountsRepository {
@@ -7,8 +8,5 @@ export interface AccountsRepository {
 		providerAccountId,
 		userId,
 	}: CreateAccount): Promise<Account>;
-	getByUser(
-		provider: "github" | "google" | "linkedin",
-		userId: string,
-	): Promise<Account | null>;
+	getByUser({ provider, userId }: GetByUser): Promise<Account | null>;
 }
