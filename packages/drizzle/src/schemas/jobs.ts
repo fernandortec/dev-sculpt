@@ -30,7 +30,7 @@ export const jobs = pgTable("jobs", {
 	stacks: text("stacks").array().notNull(),
 	seniority: jobsSenioritySchema("seniority").notNull(),
 	description: text("description").notNull(),
-	requirementes: text("requirements").array().notNull(),
+	requirements: text("requirements").array().notNull(),
 	workLocationType: workLocationType("work_location_type").notNull(),
 
 	createdAt: timestamp("created_at").notNull().defaultNow(),

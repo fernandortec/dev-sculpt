@@ -12,7 +12,7 @@ export class DrizzleAccountsRepository implements AccountsRepository {
 	}: CreateAccount): Promise<Account> {
 		const [account] = await db
 			.insert(accounts)
-			.values({ provider, providerAccountId, userId });
+			.values({ provider, providerAccountId, userId }).returning();
 
 		return account;
 	}

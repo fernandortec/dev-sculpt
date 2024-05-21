@@ -6,11 +6,11 @@ import { pgTable, text } from "drizzle-orm/pg-core";
 export const resumeToStage = pgTable("resumes_to_stages", {
 	resumeId: text("user_id")
 		.notNull()
-		.references(() => resumes.id)
+		.references(() => resumes.id, { onDelete: "cascade" })
 		.notNull(),
 	stageId: text("stage_id")
 		.notNull()
-		.references(() => stages.id)
+		.references(() => stages.id, { onDelete: "cascade" })
 		.notNull(),
 });
 
