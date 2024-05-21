@@ -2,7 +2,7 @@ import { env } from "@sculpt/env";
 import { Hono } from "hono";
 
 export const generateGithubAuthUrl = new Hono().get(
-	"/gen-link/github",
+	"auth/gen-link/github",
 	async (c): Promise<Response> => {
 		const url = new URL("https://github.com/login/oauth/authorize");
 		url.searchParams.append("response_type", "code");

@@ -2,7 +2,7 @@ import { env } from "@sculpt/env";
 import { Hono } from "hono";
 
 export const generateLinkedinAuthUrl = new Hono().get(
-	"/gen-link/linkedin",
+	"auth/gen-link/linkedin",
 	async (c): Promise<Response> => {
 		const url = new URL("https://www.linkedin.com/oauth/v2/authorization");
 		url.searchParams.append("scope", "email profile openid");

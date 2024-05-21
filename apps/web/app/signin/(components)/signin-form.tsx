@@ -1,36 +1,99 @@
 "use client";
 
-import type * as React from "react";
-
 import { Button } from "@/components/ui/button";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { authWithPassword } from "@/services/auth/auth-with-password";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 import Icons from "@/public/assets/icons";
 
+const inputSchema = z.object({
+	email: z.string().email(),
+	password: z.string().min(8),
+});
+
+type InputSchema = z.infer<typeof inputSchema>;
 interface SignInFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SignInForm({ className, ...props }: SignInFormProps) {
+	const form = useForm<InputSchema>({ resolver: zodResolver(inputSchema) });
+
+	async function handleSignIn(data: InputSchema): Promise<void> {
+		const { email, password } = data;
+		await authWithPassword(email, password);
+
+		toast.success("Login efetuado com sucesso!");
+	}
+
 	return (
 		<div {...props}>
-			<form className={cn("grid gap-2", className)}>
+			<form
+				onSubmit={form.handleSubmit(handleSignIn)}
+				className={cn("grid gap-2", className)}
+			>
 				<div className="grid gap-2">
-					<div className="grid gap-1">
-						<Label className="sr-only" htmlFor="email">
-							Email
-						</Label>
-						<Input
-							id="email"
-							placeholder="name@example.com"
-							type="email"
-							autoCapitalize="none"
-							autoComplete="email"
-							autoCorrect="off"
-						/>
-					</div>
-					<Button>Criar com e-mail</Button>
+					<Form {...form}>
+						<div className="grid gap-1">
+							<FormField
+								control={form.control}
+								name="email"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="sr-only" htmlFor="email">
+											Email
+										</FormLabel>
+										<FormControl>
+											<Input
+												id="email"
+												placeholder="name@example.com"
+												type="email"
+												autoCapitalize="none"
+												autoComplete="email"
+												autoCorrect="off"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="password"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="sr-only" htmlFor="password">
+											Senha
+										</FormLabel>
+										<FormControl>
+											<Input
+												id="password"
+												placeholder="********"
+												type="password"
+												autoCapitalize="none"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					</Form>
+					<Button type="submit">Continuar</Button>
 				</div>
-				<div className="relative">
+				<div className="relative text-gray-500">
 					<div className="absolute inset-0 flex items-center">
 						<span className="w-full border-t" />
 					</div>
