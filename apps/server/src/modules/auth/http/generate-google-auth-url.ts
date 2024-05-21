@@ -2,7 +2,7 @@ import { makeGenerateGoogleAuthUrlUseCase } from "@/modules/auth/use-cases/_fact
 import { Hono } from "hono";
 
 export const generateGoogleAuthUrl = new Hono().get(
-	"/auth/google",
+	"/gen-link/google",
 	async (c): Promise<Response> => {
 		const generateGoogleAuthUrlUseCase = makeGenerateGoogleAuthUrlUseCase();
 

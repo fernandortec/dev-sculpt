@@ -19,16 +19,19 @@ describe("Get or create account use case", () => {
 
 	it("create an account and user", async () => {
 		const { userId } = await sut.execute({
-			avatarUrl: "http://example.com/avatar.jpg",
-			email: "johndoe@gmail.com",
-			name: "John doe",
-			githubId: "123",
+			provider: "github",
+			user: {
+				avatarUrl: "http://example.com/avatar.jpg",
+				email: "johndoe@gmail.com",
+				name: "John doe",
+				id: "123",
+			},
 		});
 
-		const accountJustCreated = await accountsRepository.getByUser(
-			"github",
+		const accountJustCreated = await accountsRepository.getByUser({
+			provider: "github",
 			userId,
-		);
+		});
 		expect(userId).toEqual(expect.any(String));
 		expect(accountJustCreated).toEqual(
 			expect.objectContaining({ userId: userId, id: expect.any(String) }),
@@ -45,23 +48,25 @@ describe("Get or create account use case", () => {
 		});
 
 		const account = await accountsRepository.create({
-			provider: "github",
+			provider: "google",
 			providerAccountId: "321",
 			userId: user.id,
 		});
 
 		const { userId } = await sut.execute({
-			avatarUrl: user.avatarUrl,
-			email: user.email,
-			name: user.name,
-			githubId: "321",
+			user: {
+				avatarUrl: user.avatarUrl,
+				email: user.email,
+				name: user.name,
+				id: "321",
+			},
+			provider: "google",
 		});
 
-		const accountJustCreated = await accountsRepository.getByUser(
-			"github",
+		const accountJustCreated = await accountsRepository.getByUser({
+			provider: "google",
 			userId,
-		);
-
+		});
 
 		expect(userId).toEqual(userId);
 		expect(accountJustCreated).toEqual(
