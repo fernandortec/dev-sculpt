@@ -8,15 +8,18 @@ export const authWithPassword = async (
 	password: string,
 ): Promise<boolean> => {
 	try {
-		const response = await fetcher("auth/standard", {
+		const response = await fetcher("/auth/standard", {
 			method: "POST",
 			body: { email, password },
 		});
 
 		const { token } = await response.json();
 
-		const cookieStorage = cookies();
-		cookieStorage.set("authorization", token);
+		const cookieStore = cookies();
+		cookieStore.set("authorization", token, {
+			maxAge: 60 * 60 * 24 * 7,
+			path: "/",
+		});
 
 		return true;
 	} catch (error) {

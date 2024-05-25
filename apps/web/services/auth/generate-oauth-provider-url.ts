@@ -1,15 +1,10 @@
 "use server";
 
-import { env } from "@sculpt/env";
+import { fetcher } from "@/services/fetch-wrapper";
 
 export async function generateOauthProviderUrl(
-	provider: "github" | "linkedin" | "gmail",
-) {
-	const response = await fetch(
-		`${env.NEXT_PUBLIC_API_BASE_URL}/auth/gen-link/${provider}`,
-	);
-
-	const data = await response.json();
-
-	return data;
+	provider: "github" | "linkedin" | "google",
+): Promise<string> {
+	const response = await fetcher(`/auth/gen-link/${provider}`);
+	return response.url;
 }

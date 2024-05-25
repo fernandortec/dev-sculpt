@@ -24,7 +24,7 @@ export async function fetcher(
 		},
 	};
 
-	const baseURL = new URL(`${env.API_BASE_URL}/${input}`);
+	const baseURL = new URL(`${env.API_BASE_URL}${input}`);
 	if (init?.query) {
 		for (const key of Object.keys(init.query)) {
 			baseURL.searchParams.append(key, String(init.query[key]));

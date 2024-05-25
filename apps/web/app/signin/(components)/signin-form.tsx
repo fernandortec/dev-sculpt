@@ -13,8 +13,10 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Icons from "@/public/assets/icons";
 import { authWithPassword } from "@/services/auth/auth-with-password";
+import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import router from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -38,6 +40,13 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
 
 		toast.success("Login efetuado com sucesso!");
 		return router.push("/dashboard");
+	}
+
+	async function handleGenerateOauthUrl(
+		provider: "github" | "linkedin" | "google",
+	): Promise<unknown> {
+		const url = await generateOauthProviderUrl(provider);
+		return router.push(url);
 	}
 
 	return (
@@ -108,15 +117,27 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
 					</div>
 				</div>
 				<footer className="mt-4 grid gap-2">
-					<Button variant="outline" type="button">
+					<Button
+						variant="outline"
+						type="button"
+						onClick={() => handleGenerateOauthUrl("github")}
+					>
 						<Icons.Github className="mr-2 h-4 w-4" />
 						GitHub
 					</Button>
-					<Button variant="outline" type="button">
+					<Button
+						variant="outline"
+						type="button"
+						onClick={() => handleGenerateOauthUrl("linkedin")}
+					>
 						<Icons.Linkedin className="mr-2 h-4 w-4" />
 						Linkedin
 					</Button>
-					<Button variant="outline" type="button">
+					<Button
+						variant="outline"
+						type="button"
+						onClick={() => handleGenerateOauthUrl("google")}
+					>
 						<Icons.Google className="mr-2 h-4 w-4" />
 						Google
 					</Button>
