@@ -93,6 +93,7 @@ export default function SignUpPage() {
 							<div className="mt-5 grid grid-cols-2 gap-4">
 								<Input placeholder="Nome e sobrenome" />
 								<Input placeholder="Email" />
+								<Input placeholder="Senha" className="col-span-2" />
 								<Select defaultValue="jobseeker">
 									<SelectTrigger className="col-span-2 opacity-80">
 										<SelectValue>Como utilizará nossos serviços: </SelectValue>

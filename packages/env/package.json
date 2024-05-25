@@ -6,10 +6,10 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.10.1",
-    "zod": "^3.23.7"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@sculpt/tsconfig": "workspace:*",
-    "@types/bun": "^1.1.1"
+    "@types/bun": "^1.1.3"
   }
 }

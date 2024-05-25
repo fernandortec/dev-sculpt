@@ -17,11 +17,13 @@ export const env = createEnv({
 		GOOGLE_OAUTH_SECRET_ID: z.string(),
 		GOOGLE_OAUTH_REDIRECT_URL: z.string().url(),
 
-	LINKEDIN_OAUTH_CLIENT_ID: z.string(),
-	LINKEDIN_OAUTH_SECRET_ID: z.string(),
-	LINKEDIN_OAUTH_REDIRECT_URL: z.string().url(),
+		LINKEDIN_OAUTH_CLIENT_ID: z.string(),
+		LINKEDIN_OAUTH_SECRET_ID: z.string(),
+		LINKEDIN_OAUTH_REDIRECT_URL: z.string().url(),
 	},
-	client: {},
+	client: {
+		NEXT_PUBLIC_API_BASE_URL: z.string().url(),
+	},
 	shared: {},
 	runtimeEnv: {
 		DATABASE_URL: process.env.DATABASE_URL,
@@ -41,6 +43,8 @@ export const env = createEnv({
 		LINKEDIN_OAUTH_CLIENT_ID: process.env.LINKEDIN_OAUTH_CLIENT_ID,
 		LINKEDIN_OAUTH_SECRET_ID: process.env.LINKEDIN_OAUTH_SECRET_ID,
 		LINKEDIN_OAUTH_REDIRECT_URL: process.env.LINKEDIN_OAUTH_REDIRECT_URL,
+
+		NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
 	},
 	emptyStringAsUndefined: true,
 });

@@ -37,10 +37,10 @@ export default function AuthenticationPage() {
 				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[28rem]">
 					<header className="flex flex-col space-y-2 text-center">
 						<h1 className="font-semibold text-2xl tracking-tight">
-							Criar uma conta
+							Logar agora
 						</h1>
 						<p className="text-muted-foreground text-sm">
-							Preencha seu e-mail abaixo para criar uma conta
+							Preencha seu e-mail abaixo para entrar, ou use uma das redes.
 						</p>
 					</header>
 

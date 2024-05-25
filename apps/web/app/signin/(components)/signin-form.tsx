@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import Icons from "@/public/assets/icons";
 import { authWithPassword } from "@/services/auth/auth-with-password";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import Icons from "@/public/assets/icons";
 
 const inputSchema = z.object({
 	email: z.string().email(),
@@ -27,13 +28,16 @@ type InputSchema = z.infer<typeof inputSchema>;
 interface SignInFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SignInForm({ className, ...props }: SignInFormProps) {
+	const router = useRouter();
 	const form = useForm<InputSchema>({ resolver: zodResolver(inputSchema) });
 
-	async function handleSignIn(data: InputSchema): Promise<void> {
+	async function handleSignIn(data: InputSchema): Promise<unknown> {
 		const { email, password } = data;
-		await authWithPassword(email, password);
+		const success = await authWithPassword(email, password);
+		if (!success) return toast.error("Falha ao efetuar login!");
 
 		toast.success("Login efetuado com sucesso!");
+		return router.push("/dashboard");
 	}
 
 	return (

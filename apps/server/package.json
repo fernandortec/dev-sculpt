@@ -13,12 +13,12 @@
     "dayjs": "^1.11.11",
     "drizzle-orm": "^0.30.10",
     "googleapis": "^137.1.0",
-    "hono": "^4.3.7",
+    "hono": "^4.3.11",
     "zod": "^3.23.8"
   },
   "scripts": {
-    "dev": "bun --env-file=../../.env --hot run src/http/server.ts",
-    "start": "bun --env-file=../../.env run src/http/server.ts",
+    "dev": "bun --env-file=../../.env --hot run src/server.ts",
+    "start": "bun --env-file=../../.env run src/server.ts",
     "test:e2e": "IS_E2E=Y bun --env-file=../../.env test ./src/modules/*/http/tests/*.test.ts",
     "test:unit": "bun --env-file=../../.env test ./src/modules/*/use-cases/tests/*.test.ts",
     "seed": "bun --env-file=../../.env run src/helpers/test/test-seeds.ts"
