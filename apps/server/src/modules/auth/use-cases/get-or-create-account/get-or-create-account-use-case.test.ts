@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it } from "bun:test";
 import type { AccountsRepository } from "@/modules/accounts/repositories/accounts-repository";
 import { InMemoryAccountsRepository } from "@/modules/accounts/repositories/in-memory-accounts-repository";
-import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account-use-case";
+
+import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account/get-or-create-account-use-case";
 import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-users-repository";
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
-import { hash } from "bcrypt-ts";
 
 describe("Get or create account use case", () => {
 	let usersRepository: UsersRepository;

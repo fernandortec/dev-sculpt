@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "bun:test";
 import { InvalidCredentialsError } from "@/errors/invalid-credentials-error";
 import { MustHavePasswordError } from "@/errors/must-have-password-error";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password-use-case";
+import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password/auth-with-password-use-case";
 import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-users-repository";
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
 import { hash } from "bcrypt-ts";

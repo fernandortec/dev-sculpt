@@ -1,6 +1,6 @@
 import type { JSONResponse, OverrideDate } from "@/@types/hono";
 import { createUserSchema } from "@/modules/users/schemas/create-user";
-import { makeCreateUserUseCase } from "@/modules/users/use-cases/_factories";
+import { makeCreateUserUseCase } from "@/modules/users/use-cases/factories";
 
 import { zValidator } from "@hono/zod-validator";
 import type { User } from "@sculpt/drizzle";

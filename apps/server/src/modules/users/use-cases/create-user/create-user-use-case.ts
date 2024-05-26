@@ -17,7 +17,7 @@ export class CreateUserUseCase {
 		const userExists = await this.usersRepository.getByEmail(email);
 		if (userExists) throw new ResourceAlreadyExistsError();
 
-		const passwordHash = await hash(password, 6);
+		const passwordHash = password ? await hash(password, 6) : null;
 
 		const user = await this.usersRepository.create({
 			email,

@@ -1,15 +1,13 @@
 import { DrizzleAccountsRepository } from "@/modules/accounts/repositories/drizzle-accounts-repository";
-
-import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password-use-case";
-
-import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account-use-case";
-import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/github/get-github-access-token-use-case";
-import { GetGithubUserUseCase } from "@/modules/auth/use-cases/github/get-github-user-use-case";
-import { GenerateGoogleAuthUrlUseCase } from "@/modules/auth/use-cases/google/generate-google-auth-url-use-case";
-import { GetGoogleAccessTokenUseCase } from "@/modules/auth/use-cases/google/get-google-access-token-use-case";
-import { GetGoogleUserUseCase } from "@/modules/auth/use-cases/google/get-google-user-use-case";
-import { GetLinkedinAccessTokenUseCase } from "@/modules/auth/use-cases/linkedin/get-linkedin-access-token-use-case";
-import { GetLinkedinUserUseCase } from "@/modules/auth/use-cases/linkedin/get-linkedin-user-use-case";
+import { AuthWithPasswordUseCase } from "@/modules/auth/use-cases/auth-with-password/auth-with-password-use-case";
+import { GenerateGoogleAuthUrlUseCase } from "@/modules/auth/use-cases/generate-google-auth-url/generate-google-auth-url-use-case";
+import { GetGithubAccessTokenUseCase } from "@/modules/auth/use-cases/get-github-access-token/get-github-access-token-use-case";
+import { GetGithubUserUseCase } from "@/modules/auth/use-cases/get-github-user/get-github-user-use-case";
+import { GetGoogleAccessTokenUseCase } from "@/modules/auth/use-cases/get-google-access-token/get-google-access-token-use-case";
+import { GetGoogleUserUseCase } from "@/modules/auth/use-cases/get-google-user/get-google-user-use-case";
+import { GetLinkedinAccessTokenUseCase } from "@/modules/auth/use-cases/get-linkedin-access-token/get-linkedin-access-token-use-case";
+import { GetLinkedinUserUseCase } from "@/modules/auth/use-cases/get-linkedin-user/get-linkedin-user-use-case";
+import { GetOrCreateAccountUseCase } from "@/modules/auth/use-cases/get-or-create-account/get-or-create-account-use-case";
 import { DrizzleUsersRepository } from "@/modules/users/repositories/drizzle-users-repository";
 
 export function makeGetGithubAccessTokenUseCase(): GetGithubAccessTokenUseCase {

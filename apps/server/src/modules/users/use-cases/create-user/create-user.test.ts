@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "bun:test";
 import { ResourceAlreadyExistsError } from "@/errors/resource-already-exists";
 import { InMemoryUsersRepository } from "@/modules/users/repositories/in-memory-users-repository";
 import type { UsersRepository } from "@/modules/users/repositories/users-repository";
-import { CreateUserUseCase } from "@/modules/users/use-cases/create-user-use-case";
+import { CreateUserUseCase } from "@/modules/users/use-cases/create-user/create-user-use-case";
 
 describe("Create User use case", () => {
 	let usersRepository: UsersRepository;
