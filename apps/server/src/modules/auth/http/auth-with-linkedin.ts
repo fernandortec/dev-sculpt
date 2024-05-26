@@ -29,7 +29,7 @@ export const authWithLinkedin = new Hono().post(
 
 		const { userId } = await getOrCreateAccountUseCase.execute({
 			user: oauthUser,
-			provider: "google",
+			provider: "linkedin",
 		});
 
 		const token = await sign({ sub: userId }, env.JWT_SECRET);

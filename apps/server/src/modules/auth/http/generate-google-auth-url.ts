@@ -8,6 +8,6 @@ export const generateGoogleAuthUrl = new Hono().get(
 
 		const { url } = await generateGoogleAuthUrlUseCase.execute();
 
-		return c.redirect(url);
+		return c.body(url);
 	},
 );

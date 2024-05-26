@@ -6,5 +6,7 @@ export async function generateOauthProviderUrl(
 	provider: "github" | "linkedin" | "google",
 ): Promise<string> {
 	const response = await fetcher(`/auth/gen-link/${provider}`);
-	return response.url;
+	const data = await response.text()
+
+	return data;
 }

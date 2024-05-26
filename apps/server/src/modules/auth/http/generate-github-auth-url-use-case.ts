@@ -9,6 +9,6 @@ export const generateGithubAuthUrl = new Hono().get(
 		url.searchParams.append("client_id", env.GITHUB_OAUTH_CLIENT_ID);
 		url.searchParams.append("redirect_url", env.GITHUB_OAUTH_REDIRECT_URL);
 
-		return c.redirect(url.toString());
+		return c.body(url.toString());
 	},
 );

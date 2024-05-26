@@ -41,7 +41,7 @@ export class GetOrCreateAccountUseCase {
 
 		if (!accountExists) {
 			await this.accountsRepository.create({
-				provider: "github",
+				provider,
 				providerAccountId: id,
 				userId: user.id,
 			});
