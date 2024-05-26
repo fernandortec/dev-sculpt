@@ -23,9 +23,16 @@ export const env = createEnv({
 	},
 	client: {
 		NEXT_PUBLIC_API_BASE_URL: z.string().url(),
+		NEXT_PUBLIC_API_MOCKING: z.boolean().default(false),
 	},
-	shared: {},
+	shared: {
+		NODE_ENV: z
+			.enum(["development", "production", "test"])
+			.default("development"),
+	},
 	runtimeEnv: {
+		NODE_ENV: process.env.NODE_ENV,
+
 		DATABASE_URL: process.env.DATABASE_URL,
 		JWT_SECRET: process.env.JWT_SECRET,
 		SERVER_PORT: process.env.SERVER_PORT,
@@ -45,6 +52,7 @@ export const env = createEnv({
 		LINKEDIN_OAUTH_REDIRECT_URL: process.env.LINKEDIN_OAUTH_REDIRECT_URL,
 
 		NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+		NEXT_PUBLIC_API_MOCKING: process.env.NEXT_PUBLIC_API_MOCKING,
 	},
 	emptyStringAsUndefined: true,
 });

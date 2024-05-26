@@ -11,7 +11,8 @@
 			"@/lib/*": ["./lib/*"],
 			"@/public/*": ["./public/*"],
 			"@/components/*": ["./components/*"],
-			"@/services/*": ["./services/*"]
+			"@/services/*": ["./services/*"],
+			"@/mocks/*": ["./mocks/*"]
 		}
 	},
 	"include": [
