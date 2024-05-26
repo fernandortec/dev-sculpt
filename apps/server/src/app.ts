@@ -1,4 +1,4 @@
-import { authRoutes } from "@/modules/auth/http/_routes";
+import { authRoutes } from "@/modules/auth/http";
 import { userRoutes } from "@/modules/users/http/_routes";
 import { Hono } from "hono";
 

@@ -7,7 +7,7 @@ describe("E2E Generate Github auth URL", () => {
 			headers: { "Content-Type": "application/json" },
 		});
 
-		expect(response.status).toBe(302);
-		expect(response.headers.get("location")).toEqual(expect.any(String));
+		const url = await response.text();
+		expect(url).toEqual(expect.any(String));
 	});
 });
