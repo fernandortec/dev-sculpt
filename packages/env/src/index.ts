@@ -23,7 +23,7 @@ export const env = createEnv({
 	},
 	client: {
 		NEXT_PUBLIC_API_BASE_URL: z.string().url(),
-		NEXT_PUBLIC_API_MOCKING: z.boolean().default(false),
+		NEXT_PUBLIC_API_MOCKING: z.coerce.boolean().default(false),
 	},
 	shared: {
 		NODE_ENV: z

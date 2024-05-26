@@ -1,8 +1,8 @@
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Icons from "@/public/assets/icons";
 import { SignInForm } from "@/signin/(components)/signin-form";
 import Link from "next/link";
+import { cn } from "../../helpers/utils";
 
 export default function AuthenticationPage() {
 	return (

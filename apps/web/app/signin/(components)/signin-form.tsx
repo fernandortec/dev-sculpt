@@ -10,7 +10,6 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import Icons from "@/public/assets/icons";
 import { authWithPassword } from "@/services/auth/auth-with-password";
 import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url";
@@ -20,6 +19,7 @@ import router from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { cn } from "../../../helpers/utils";
 
 const inputSchema = z.object({
 	email: z.string().email(),

@@ -3,7 +3,8 @@ import {
 	makeGetLinkedinAccessTokenUseCase,
 	makeGetLinkedinUserUseCase,
 	makeGetOrCreateAccountUseCase,
-} from "@/modules/auth/use-cases/_factories";
+} from "@/modules/auth/use-cases/factories";
+
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";
 import { Hono } from "hono";

@@ -1,4 +1,4 @@
-import { makeGenerateGoogleAuthUrlUseCase } from "@/modules/auth/use-cases/_factories";
+import { makeGenerateGoogleAuthUrlUseCase } from "@/modules/auth/use-cases/factories";
 import { Hono } from "hono";
 
 export const generateGoogleAuthUrl = new Hono().get(
