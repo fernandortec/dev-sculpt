@@ -3,9 +3,7 @@ import type { UsersRepository } from "@/modules/users/repositories/users-reposit
 import type { CreateUser } from "@/modules/users/schemas/create-user";
 import type { UpdateUser } from "@/modules/users/schemas/update-user";
 import type { User } from "@sculpt/drizzle";
-
-import { createId } from "@paralleldrive/cuid2";
-import { hash } from "bcrypt-ts";
+import { ulid } from "ulid";
 
 export class InMemoryUsersRepository implements UsersRepository {
 	private users: User[] = [];
@@ -17,7 +15,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 		password,
 	}: CreateUser): Promise<User> {
 		const user: User = {
-			id: createId(),
+			id: ulid(),
 			email,
 			name,
 			role,

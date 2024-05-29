@@ -1,12 +1,12 @@
 import { afterEach, beforeEach } from "bun:test";
-import { createId } from "@paralleldrive/cuid2";
 import { drizzle, migrate, postgres, sql } from "@sculpt/drizzle/pkgs";
+import { ulid } from "ulid";
 
 async function updateDatabaseSchemaOnTesting(): Promise<void> {
 	if (!process.env.IS_E2E) return;
 	if (!process.env.DATABASE_URL) throw new Error("Unset Database URL");
 
-	const schema = createId();
+	const schema = ulid();
 
 	const databaseUrl = new URL(process.env.DATABASE_URL);
 	databaseUrl.searchParams.set("search_path", schema);

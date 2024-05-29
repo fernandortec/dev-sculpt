@@ -1,8 +1,8 @@
 import { companies } from "@/schemas/companies";
 import { stages } from "@/schemas/stages";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { ulid } from "ulid";
 
 export const jobsSenioritySchema = pgEnum("seniority", [
 	"intern",
@@ -23,7 +23,7 @@ export const workLocationType = pgEnum("work_location_type", [
 export const jobs = pgTable("jobs", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId())
+		.$defaultFn(() => ulid())
 		.notNull(),
 
 	name: text("name").notNull(),

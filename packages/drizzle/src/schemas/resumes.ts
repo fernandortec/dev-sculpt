@@ -1,14 +1,10 @@
 import { experiences } from "@/schemas/experiences";
 import { users } from "@/schemas/users";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
-import { pgTable, text } from "drizzle-orm/pg-core";
+import { pgTable, serial, text } from "drizzle-orm/pg-core";
 
 export const resumes = pgTable("resumes", {
-	id: text("id")
-		.primaryKey()
-		.$defaultFn(() => createId())
-		.notNull(),
+	id: serial("id").primaryKey().notNull(),
 
 	skills: text("skills").array().notNull(),
 	emailForContact: text("email_for_contact").notNull().unique(),

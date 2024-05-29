@@ -1,14 +1,14 @@
 import { jobs } from "@/schemas/jobs";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text } from "drizzle-orm/pg-core";
+import { ulid } from "ulid";
 
 export const stageStatusEnum = pgEnum("status", ["closed", "open"]);
 
 export const stages = pgTable("stages", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId())
+		.$defaultFn(() => ulid())
 		.notNull(),
 
 	name: text("name").notNull(),

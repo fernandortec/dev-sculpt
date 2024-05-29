@@ -1,7 +1,8 @@
 import { users } from "@/schemas/users";
-import { createId } from "@paralleldrive/cuid2";
+
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
+import { ulid } from "ulid";
 
 const providersEnum = pgEnum("provider", ["google", "github", "linkedin"]);
 
@@ -10,7 +11,7 @@ export const accounts = pgTable(
 	{
 		id: text("id")
 			.primaryKey()
-			.$defaultFn(() => createId())
+			.$defaultFn(() => ulid())
 			.notNull(),
 
 		provider: providersEnum("provider").notNull(),

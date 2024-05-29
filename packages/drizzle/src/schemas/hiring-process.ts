@@ -1,8 +1,7 @@
 import { jobs } from "@/schemas/jobs";
 import { resumes } from "@/schemas/resumes";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
-import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const currentHiringStatusEnum = pgEnum("current_status", [
 	"approved",
@@ -11,16 +10,13 @@ export const currentHiringStatusEnum = pgEnum("current_status", [
 ]);
 
 export const hiringProcess = pgTable("hiring_process", {
-	id: text("id")
-		.primaryKey()
-		.$defaultFn(() => createId())
-		.notNull(),
+	id: serial("id").primaryKey().notNull(),
 
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	currentStatus: currentHiringStatusEnum("current_status").notNull(),
 	feedbackFromCompany: text("feedback_from_company"),
 
-	resumeId: text("resume_id")
+	resumeId: serial("resume_id")
 		.notNull()
 		.references(() => resumes.id, {
 			onDelete: "cascade",

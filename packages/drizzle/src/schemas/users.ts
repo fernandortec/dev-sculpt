@@ -1,16 +1,16 @@
 import { accounts } from "@/schemas/accounts";
 import { companies } from "@/schemas/companies";
 import { resumes } from "@/schemas/resumes";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { ulid } from "ulid";
 
 export const userRolesEnum = pgEnum("role", ["jobseeker", "recruiter"]);
 
 export const users = pgTable("users", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId())
+		.$defaultFn(() => ulid())
 		.notNull(),
 
 	bio: text("bio"),

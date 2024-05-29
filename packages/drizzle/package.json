@@ -14,11 +14,11 @@
     "db:studio": "bun --env-file=../../.env drizzle-kit studio"
   },
   "dependencies": {
-    "@paralleldrive/cuid2": "^2.2.2",
     "@sculpt/env": "workspace:*",
     "drizzle-orm": "^0.30.10",
     "pg": "^8.11.5",
-    "postgres": "^3.4.4"
+    "postgres": "^3.4.4",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@sculpt/tsconfig": "workspace:*",

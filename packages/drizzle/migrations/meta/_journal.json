@@ -1,54 +1,12 @@
 {
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1715200567548,
-      "tag": "0000_real_bloodscream",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1715272790842,
-      "tag": "0001_brainy_captain_midlands",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1715307566612,
-      "tag": "0002_silent_romulus",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
       "version": "6",
-      "when": 1716004355148,
-      "tag": "0003_burly_vivisector",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1716046008341,
-      "tag": "0004_spooky_meggan",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "6",
-      "when": 1716051234982,
-      "tag": "0005_cold_galactus",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "6",
-      "when": 1716051404973,
-      "tag": "0006_wooden_sleepwalker",
+      "when": 1716998358913,
+      "tag": "0000_chunky_black_widow",
       "breakpoints": true
     }
   ]

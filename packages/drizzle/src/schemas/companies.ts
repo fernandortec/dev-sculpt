@@ -1,13 +1,13 @@
 import { jobs } from "@/schemas/jobs";
 import { users } from "@/schemas/users";
-import { createId } from "@paralleldrive/cuid2";
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { ulid } from "ulid";
 
 export const companies = pgTable("companies", {
 	id: text("id")
 		.primaryKey()
-		.$defaultFn(() => createId())
+		.$defaultFn(() => ulid())
 		.notNull(),
 
 	email: text("email").unique().notNull(),

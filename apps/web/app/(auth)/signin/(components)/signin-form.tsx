@@ -18,7 +18,7 @@ type InputSchema = z.infer<typeof inputSchema>;
 
 export function SignInForm() {
 	const router = useRouter();
-	const [_, formAction] = useActionState(submitAction, {
+	const [_, formAction, isPending] = useActionState(submitAction, {
 		email: "",
 		password: "",
 	});
@@ -37,7 +37,7 @@ export function SignInForm() {
 		}
 
 		const authSuccessfull = await authWithPassword(email, password);
-		
+
 		if (!authSuccessfull) {
 			toast.error("Dados inválidos!");
 			return prevState;
@@ -82,7 +82,7 @@ export function SignInForm() {
 						/>
 					</div>
 				</div>
-				<Button type="submit">Continuar</Button>
+				<Button type="submit" disabled={isPending}>Continuar</Button>
 			</div>
 
 			<div className="relative text-gray-500">
