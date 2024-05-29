@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import Icons from "@/public/assets/icons";
 import { SignInForm } from "@/signin/(components)/signin-form";
+import { SocialLoginsForm } from "@/signin/(components)/social-logins-form";
 import Link from "next/link";
 import { cn } from "../../helpers/utils";
 
@@ -45,6 +46,7 @@ export default function AuthenticationPage() {
 					</header>
 
 					<SignInForm />
+					<SocialLoginsForm />
 
 					<p className="px-8 text-center text-muted-foreground text-sm">
 						Clicando em continuar, você concorda com nossos,{" "}
