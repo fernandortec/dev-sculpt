@@ -1,30 +1,33 @@
 {
-  "name": "@sculpt/server",
-  "version": "0.0.1",
-  "private": true,
-  "main": "./src/http/server.ts",
-  "types": "./src/http/server.ts",
-  "dependencies": {
-    "@hono/zod-validator": "^0.2.1",
-    "@sculpt/drizzle": "workspace:*",
-    "@sculpt/env": "workspace:*",
-    "bcrypt-ts": "^5.0.2",
-    "dayjs": "^1.11.11",
-    "drizzle-orm": "^0.30.10",
-    "googleapis": "^137.1.0",
-    "hono": "^4.4.0",
-    "ulid": "^2.3.0",
-    "zod": "^3.23.8"
-  },
-  "scripts": {
-    "dev": "bun --env-file=../../.env --hot run src/server.ts",
-    "start": "bun --env-file=../../.env run src/server.ts",
-    "test:e2e": "IS_E2E=Y bun --env-file=../../.env test ./src/modules/*/http/**/*.test.ts",
-    "test:unit": "bun --env-file=../../.env test ./src/modules/*/use-cases/**/*.test.ts",
-    "seed": "bun --env-file=../../.env run src/helpers/test/test-seeds.ts"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^8.4.1",
-    "@sculpt/tsconfig": "workspace:*"
-  }
+	"name": "@sculpt/server",
+	"version": "0.0.1",
+	"private": true,
+	"main": "./src/http/server.ts",
+	"types": "./src/http/server.ts",
+	"exports": {
+		".": "./src/shared/public-schemas.ts"
+	},
+	"dependencies": {
+		"@hono/zod-validator": "^0.2.1",
+		"@sculpt/drizzle": "workspace:*",
+		"@sculpt/env": "workspace:*",
+		"bcrypt-ts": "^5.0.2",
+		"dayjs": "^1.11.11",
+		"drizzle-orm": "^0.30.10",
+		"googleapis": "^137.1.0",
+		"hono": "^4.4.0",
+		"ulid": "^2.3.0",
+		"zod": "^3.23.8"
+	},
+	"scripts": {
+		"dev": "bun --env-file=../../.env --hot run src/server.ts",
+		"start": "bun --env-file=../../.env run src/server.ts",
+		"test:e2e": "IS_E2E=Y bun --env-file=../../.env test ./src/modules/*/http/**/*.test.ts",
+		"test:unit": "bun --env-file=../../.env test ./src/modules/*/use-cases/**/*.test.ts",
+		"seed": "bun --env-file=../../.env run src/helpers/test/test-seeds.ts"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^8.4.1",
+		"@sculpt/tsconfig": "workspace:*"
+	}
 }

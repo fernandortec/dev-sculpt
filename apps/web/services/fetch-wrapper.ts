@@ -7,10 +7,14 @@ interface FetcherRequest extends Omit<RequestInit, "body"> {
 	query?: { [key: string]: string };
 }
 
-export async function fetcher(
+interface FetcherResponse<T> extends Response {
+	json(): Promise<T>;
+}
+
+export async function fetcher<T>(
 	input: string | URL | globalThis.Request,
 	init?: FetcherRequest,
-): Promise<Response> {
+): Promise<FetcherResponse<T>> {
 	const cookiesStore = cookies();
 	const authorization = cookiesStore.get("authorization");
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { fetcher } from "@/services/fetch-wrapper";
+import { fetcher } from "../fetch-wrapper";
 
 export async function generateOauthProviderUrl(
 	provider: string,

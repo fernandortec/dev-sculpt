@@ -1,6 +1,7 @@
 import { accounts } from "@/schemas/accounts";
 import { companies } from "@/schemas/companies";
 import { resumes } from "@/schemas/resumes";
+import type { Override } from "@sculpt/tsconfig";
 import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { ulid } from "ulid";
@@ -42,3 +43,4 @@ export const usersRelations = relations(users, ({ one, many }) => ({
 }));
 
 export type User = InferSelectModel<typeof users>;
+export type HttpUser = Override<User, { createdAt: string }>;

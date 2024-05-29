@@ -1,7 +1,7 @@
 "use server";
 
-import { fetcher } from "@/services/fetch-wrapper";
 import { cookies } from "next/headers";
+import { fetcher } from "../fetch-wrapper";
 
 export const authWithPassword = async (
 	email: string,

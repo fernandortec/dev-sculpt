@@ -1,15 +1,19 @@
-import type { JSONResponse, OverrideDate } from "@/@types/hono";
+import type { JSONResponse } from "@/@types/hono";
 import { createUserSchema } from "@/modules/users/schemas/create-user";
 import { makeCreateUserUseCase } from "@/modules/users/use-cases/factories";
-
 import { zValidator } from "@hono/zod-validator";
 import type { User } from "@sculpt/drizzle";
+import type { Override } from "@sculpt/tsconfig";
 import { Hono } from "hono";
+
+export type CreateUserResponse = {
+	user: Override<User, { createdAt: string }>;
+};
 
 export const createUser = new Hono().post(
 	"/users",
 	zValidator("json", createUserSchema),
-	async (c): Promise<JSONResponse<OverrideDate<User>>> => {
+	async (c): Promise<JSONResponse<CreateUserResponse>> => {
 		const { email, name, role, password, avatarUrl } = c.req.valid("json");
 
 		const createUserUseCase = makeCreateUserUseCase();
@@ -22,6 +26,6 @@ export const createUser = new Hono().post(
 			password,
 		});
 
-		return c.json(user, 201);
+		return c.json({ user }, 201);
 	},
 );
