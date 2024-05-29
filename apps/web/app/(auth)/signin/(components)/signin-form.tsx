@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { safeParser } from "@/helpers/safe-parser";
 import { authWithPassword } from "@/services/auth/auth-with-password";
 import { Label } from "@radix-ui/react-label";
 import { useRouter } from "next/navigation";
@@ -24,24 +25,14 @@ export function SignInForm() {
 	});
 
 	async function submitAction(
-		prevState: InputSchema,
+		_: InputSchema,
 		formData: FormData,
 	): Promise<InputSchema> {
-		const email = String(formData.get("email"));
-		const password = String(formData.get("password"));
-		const { success } = inputSchema.safeParse({ email, password });
+		const rawData = Object.fromEntries(formData.entries());
+		const { data } = safeParser(inputSchema, rawData);
+		const { email, password } = data;
 
-		if (!success) {
-			toast.error("Dados inválidos!");
-			return prevState;
-		}
-
-		const authSuccessfull = await authWithPassword(email, password);
-
-		if (!authSuccessfull) {
-			toast.error("Dados inválidos!");
-			return prevState;
-		}
+		await authWithPassword(email, password);
 
 		toast.success("Login efetuado com sucesso!");
 		router.push("/dashboard");
@@ -82,7 +73,9 @@ export function SignInForm() {
 						/>
 					</div>
 				</div>
-				<Button type="submit" disabled={isPending}>Continuar</Button>
+				<Button type="submit" disabled={isPending}>
+					Continuar
+				</Button>
 			</div>
 
 			<div className="relative text-gray-500">

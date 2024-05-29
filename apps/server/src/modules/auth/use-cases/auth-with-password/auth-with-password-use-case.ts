@@ -16,7 +16,6 @@ export class AuthWithPasswordUseCase {
 		password: string,
 	): Promise<AuthWithPasswordUseCaseResponse> {
 		const user = await this.usersRepository.getByEmail(email);
-
 		if (!user) throw new ResourceNotFoundError();
 		if (user.passwordHash === null) throw new MustHavePasswordError();
 

@@ -9,13 +9,13 @@ export default function AuthenticationPage() {
 	return (
 		<div className="container relative grid h-screen items-center justify-center lg:grid-cols-2">
 			<Link
-				href="/examples/authentication"
+				href="/signup/"
 				className={cn(
 					buttonVariants({ variant: "ghost" }),
 					"absolute top-4 right-4 md:top-8 md:right-8",
 				)}
 			>
-				Login
+				Cadastro
 			</Link>
 			<aside className="relative h-full flex-col p-10 text-white lg:flex dark:border-r">
 				<div className="absolute inset-0 bg-zinc-900" />
@@ -38,10 +38,10 @@ export default function AuthenticationPage() {
 				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[28rem]">
 					<header className="flex flex-col space-y-2 text-center">
 						<h1 className="font-semibold text-2xl tracking-tight">
-							Logar agora
+							Entrar agora
 						</h1>
 						<p className="text-muted-foreground text-sm">
-							Preencha seu e-mail abaixo para entrar, ou use uma das redes.
+							Preencha seu e-mail abaixo para entrar, ou utilize um dos logins sociais.
 						</p>
 					</header>
 

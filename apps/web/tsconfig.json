@@ -12,7 +12,8 @@
 			"@/public/*": ["./public/*"],
 			"@/components/*": ["./components/*"],
 			"@/services/*": ["./services/*"],
-			"@/mocks/*": ["./mocks/*"]
+			"@/mocks/*": ["./mocks/*"],
+			"@/helpers/*": ["./helpers/*"]
 		}
 	},
 	"include": [

@@ -33,7 +33,7 @@ export function SocialLoginsForm(): JSX.Element {
 				value="github"
 			>
 				<Icons.Github className="mr-2 h-4 w-4" />
-				GitHub
+				Continuar com GitHub
 			</Button>
 			<Button
 				disabled={isPending}
@@ -43,7 +43,7 @@ export function SocialLoginsForm(): JSX.Element {
 				value="linkedin"
 			>
 				<Icons.Linkedin className="mr-2 h-4 w-4" />
-				Linkedin
+				Continuar com Linkedin
 			</Button>
 			<Button
 				disabled={isPending}
@@ -53,7 +53,7 @@ export function SocialLoginsForm(): JSX.Element {
 				value="google"
 			>
 				<Icons.Google className="mr-2 h-4 w-4" />
-				Google
+				Continuar com Google
 			</Button>
 		</form>
 	);

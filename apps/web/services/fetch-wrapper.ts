@@ -11,7 +11,8 @@ interface FetcherResponse<T> extends Response {
 	json(): Promise<T>;
 }
 
-export async function fetcher<T>(
+// biome-ignore lint/suspicious/noExplicitAny:
+export async function fetcher<T = any>(
 	input: string | URL | globalThis.Request,
 	init?: FetcherRequest,
 ): Promise<FetcherResponse<T>> {
