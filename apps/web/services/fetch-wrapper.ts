@@ -37,24 +37,20 @@ export async function fetcher<T = any>(
 	}
 
 	const response = await fetch(baseURL, parsedInit);
-
 	if (!response.ok) {
 		const errorDetails = {
 			message: "The HTTP request encountered an error.",
-			status: response.status,
-			statusText: response.statusText,
-			url: response.url,
-			stack: new Error().stack?.split("\n").slice(1).join("\n"),
+			response: response
 		};
 
 		const errorMessage = `
         ${errorDetails.message}
-        Status: ${errorDetails.status} ${errorDetails.statusText}
-        URL: ${errorDetails.url}
-        Stack Trace: ${errorDetails.stack}
+        Status: ${errorDetails.response.status} ${errorDetails.response.statusText}
+        URL: ${errorDetails.response.url}
     `;
 
-		throw new Error(errorMessage);
+		console.error(errorDetails);
+		throw new Error("Request has failed", { cause: errorMessage });
 	}
 
 	return response;

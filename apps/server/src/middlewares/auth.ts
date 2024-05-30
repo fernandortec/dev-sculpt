@@ -16,7 +16,7 @@ export const auth = createMiddleware<AuthInContext>(
 
 		const payload = await verify(authorization, env.JWT_SECRET);
 
-		c.set("userId", { userId: payload.sub });
+		c.set("userId", { userId: String(payload.sub) });
 
 		await next();
 	},

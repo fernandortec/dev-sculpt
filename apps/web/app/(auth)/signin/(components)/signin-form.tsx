@@ -28,14 +28,20 @@ export function SignInForm() {
 		_: InputSchema,
 		formData: FormData,
 	): Promise<InputSchema> {
+		console.log('opa')
 		const rawData = Object.fromEntries(formData.entries());
 		const { data } = safeParser(inputSchema, rawData);
 		const { email, password } = data;
 
-		await authWithPassword(email, password);
-
-		toast.success("Login efetuado com sucesso!");
-		router.push("/dashboard");
+		try {
+			await authWithPassword({ email, password });
+			toast.success("Login efetuado com sucesso!");
+			router.push("/dashboard");
+		} catch (err) {
+			console.log('opa')
+			console.log(err, "<><>");
+			toast.error("Credenciais inválidas!");
+		}
 
 		return { email, password };
 	}

@@ -1,12 +1,12 @@
 import { afterEach, beforeEach } from "bun:test";
 import { drizzle, migrate, postgres, sql } from "@sculpt/drizzle/pkgs";
-import { ulid } from "ulid";
+import { randomBytes } from "node:crypto";
 
 async function updateDatabaseSchemaOnTesting(): Promise<void> {
 	if (!process.env.IS_E2E) return;
 	if (!process.env.DATABASE_URL) throw new Error("Unset Database URL");
 
-	const schema = ulid();
+	const schema = randomBytes(10).toString('hex');
 
 	const databaseUrl = new URL(process.env.DATABASE_URL);
 	databaseUrl.searchParams.set("search_path", schema);

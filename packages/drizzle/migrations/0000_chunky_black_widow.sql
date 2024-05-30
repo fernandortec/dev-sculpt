@@ -5,31 +5,31 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "public"."role" AS ENUM('jobseeker', 'recruiter');
+ CREATE TYPE "role" AS ENUM('jobseeker', 'recruiter');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."current_status" AS ENUM('approved', 'rejected', 'in_progress');
+ CREATE TYPE "current_status" AS ENUM('approved', 'rejected', 'in_progress');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."seniority" AS ENUM('intern', 'junior', 'mid-level', 'senior', 'lead', 'manager', 'cto');
+ CREATE TYPE "seniority" AS ENUM('intern', 'junior', 'mid-level', 'senior', 'lead', 'manager', 'cto');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."work_location_type" AS ENUM('remote', 'on-site', 'hybrid');
+ CREATE TYPE "work_location_type" AS ENUM('remote', 'on-site', 'hybrid');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."status" AS ENUM('closed', 'open');
+ CREATE TYPE "status" AS ENUM('closed', 'open');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

@@ -15,7 +15,7 @@ describe("E2E Create user", () => {
 			}),
 		});
 
-		const user = await response.json();
+		const { user } = await response.json();
 
 		expect(user).toEqual(
 			expect.objectContaining({
