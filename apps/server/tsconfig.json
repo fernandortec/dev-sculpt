@@ -1,9 +1,13 @@
 {
 	"extends": "@sculpt/tsconfig/base.json",
 	"compilerOptions": {
+		"module": "ESNext",
 		"paths": {
 			"@/*": ["./src/*"]
 		},
 		"noUncheckedIndexedAccess": false
-	}
+	},
+
+	"include": ["./src/**/*"],
+	"exclude": ["node_modules"]
 }

@@ -1,27 +1,44 @@
 {
-	"extends": "@sculpt/tsconfig/nextjs.json",
-	"compilerOptions": {
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
-		"paths": {
-			"@/*": ["./app/*"],
-			"@/lib/*": ["./lib/*"],
-			"@/public/*": ["./public/*"],
-			"@/components/*": ["./components/*"],
-			"@/services/*": ["./services/*"],
-			"@/mocks/*": ["./mocks/*"],
-			"@/helpers/*": ["./helpers/*"]
-		}
-	},
-	"include": [
-		"next-env.d.ts",
-		"next.config.js",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts"
-	],
-	"exclude": ["node_modules"]
+  "extends": "@sculpt/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./app/*"
+      ],
+      "@/lib/*": [
+        "./lib/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/services/*": [
+        "./services/*"
+      ],
+      "@/mocks/*": [
+        "./e2e/mocks/*"
+      ],
+      "@/helpers/*": [
+        "./helpers/*"
+      ]
+    },
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "next.config.mjs",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

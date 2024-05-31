@@ -1,9 +1,9 @@
-import type { JSONResponse } from "@/@types/hono";
 import {
 	makeGetGithubAccessTokenUseCase,
 	makeGetGithubUserUseCase,
 	makeGetOrCreateAccountUseCase,
 } from "@/modules/auth/use-cases/factories";
+import type { JSONResponse } from "@/shared/hono";
 
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";

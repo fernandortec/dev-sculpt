@@ -1,10 +1,10 @@
-import type { JSONResponse } from "@/@types/hono";
 import { InvalidCredentialsError } from "@/errors/invalid-credentials-error";
 import { MustHavePasswordError } from "@/errors/must-have-password-error";
 import { serverErrorHandler } from "@/middlewares/server-error-handler";
 import { zErrHandler } from "@/middlewares/zod-error-handler";
 import { authWithPasswordSchema } from "@/modules/auth/schemas/auth-with-password";
 import { makeAuthWithPasswordUseCase } from "@/modules/auth/use-cases/factories";
+import type { JSONResponse } from "@/shared/hono";
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";
 import { Hono } from "hono";
