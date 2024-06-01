@@ -23,6 +23,8 @@ export class DrizzleUsersRepository implements UsersRepository {
 			})
 			.returning();
 
+		if (!user) throw new Error();
+
 		return user;
 	}
 	async update({
@@ -39,6 +41,8 @@ export class DrizzleUsersRepository implements UsersRepository {
 			.update(users)
 			.set({ id, bio, companyId, email, name, role, passwordHash, avatarUrl })
 			.returning();
+
+		if (!user) throw new Error();
 
 		return user;
 	}

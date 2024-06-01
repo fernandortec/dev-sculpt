@@ -1,6 +1,8 @@
+import { fetcher } from "@/services/fetch-wrapper";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { fetcher } from "../../../../services/fetch-wrapper";
+
+export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request): Promise<void> {
 	const url = new URL(request.url);

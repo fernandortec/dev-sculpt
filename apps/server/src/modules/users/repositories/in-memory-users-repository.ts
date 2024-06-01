@@ -7,6 +7,7 @@ import { ulid } from "ulid";
 
 export class InMemoryUsersRepository implements UsersRepository {
 	private users: User[] = [];
+	
 	async create({
 		email,
 		name,

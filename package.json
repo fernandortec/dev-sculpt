@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
-		"turbo": "latest"
+		"turbo": "^2.0.0-canary.2"
 	},
 	"workspaces": ["apps/*", "packages/*"],
 	"config": {
