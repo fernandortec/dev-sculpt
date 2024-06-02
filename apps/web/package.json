@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "bun --env-file=../../.env next dev",
     "build": "NODE_ENV=production bun --env-file=../../.env next build",
+    "test:ui": "bun --env-file=../../.env playwright test --ui",
+    "test": "playwright test",
     "start": "next start"
   },
   "dependencies": {
@@ -32,15 +34,12 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.44.1",
+    "@sculpt/tsconfig": "workspace:*",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "msw": "^2.3.0",
-    "typescript": "^5.4.5",
-    "@sculpt/tsconfig": "workspace:*"
+    "typescript": "^5.4.5"
   },
   "msw": {
-    "workerDirectory": [
-      "public"
-    ]
+    "workerDirectory": ["public"]
   }
 }

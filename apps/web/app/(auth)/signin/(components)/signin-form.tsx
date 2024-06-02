@@ -28,7 +28,6 @@ export function SignInForm() {
 		_: InputSchema,
 		formData: FormData,
 	): Promise<InputSchema> {
-		console.log('opa')
 		const rawData = Object.fromEntries(formData.entries());
 		const { data } = safeParser(inputSchema, rawData);
 		const { email, password } = data;
@@ -38,8 +37,6 @@ export function SignInForm() {
 			toast.success("Login efetuado com sucesso!");
 			router.push("/dashboard");
 		} catch (err) {
-			console.log('opa')
-			console.log(err, "<><>");
 			toast.error("Credenciais inválidas!");
 		}
 

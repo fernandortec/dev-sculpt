@@ -1,8 +1,6 @@
 {
 	"extends": "@sculpt/tsconfig/nextjs.json",
 	"compilerOptions": {
-		"baseUrl": ".",
-    
 		"plugins": [
 			{
 				"name": "next"
@@ -22,7 +20,7 @@
 			"@/errors/*": ["../server/src/errors/*"],
 			"@/schemas/*": ["../../packages/drizzle/src/schemas/*"]
 		},
-		"jsx": "preserve"
+		"jsx": "preserve",
 	},
 	"include": [
 		"next-env.d.ts",
