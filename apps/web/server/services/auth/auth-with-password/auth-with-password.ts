@@ -1,8 +1,8 @@
 "use server";
 
+import { fetcher } from "@/wrappers/fetch*";
 import type { AuthWithPassword } from "@sculpt/server";
 import { cookies } from "next/headers";
-import { fetcher } from "../fetch-wrapper";
 
 export async function authWithPassword({
 	email,

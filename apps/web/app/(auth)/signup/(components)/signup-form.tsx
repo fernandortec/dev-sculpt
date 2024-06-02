@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { safeParser } from "@/helpers/safe-parser";
-import { createUser } from "@/services/user/create-user";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { createUser } from "../../../../server/services/user/create-user";
 
 const signupSchema = z.object({
 	name: z.string(),

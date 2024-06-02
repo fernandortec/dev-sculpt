@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import Icons from "@/public/assets/icons";
-import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
+import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url/generate-oauth-provider-url";
 
 export function SocialLoginsForm(): JSX.Element {
 	const router = useRouter();

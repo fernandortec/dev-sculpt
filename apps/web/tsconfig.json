@@ -11,16 +11,19 @@
 			"@/lib/*": ["./lib/*"],
 			"@/public/*": ["./public/*"],
 			"@/components/*": ["./components/*"],
-			"@/services/*": ["./services/*"],
 			"@/mocks/*": ["./e2e/mocks/*"],
 			"@/helpers/*": ["./helpers/*"],
+
+			"@/actions/*": ["./server/actions/*"],
+			"@/services/*": ["./server/services/*"],
+			"@/wrappers/fetch*": ["./server/fetch-wrapper"],
 
 			"@/modules/*": ["../server/src/modules/*"],
 			"@/shared/*": ["../server/src/shared/*"],
 			"@/errors/*": ["../server/src/errors/*"],
 			"@/schemas/*": ["../../packages/drizzle/src/schemas/*"]
 		},
-		"jsx": "preserve",
+		"jsx": "preserve"
 	},
 	"include": [
 		"next-env.d.ts",

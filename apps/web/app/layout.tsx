@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
-import { MockProvider } from "../mocks/msw-provider";
+
 import "../public/global.css";
+import { MswMocksProvider } from "@/lib/msw/msw-provider";
 
 const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
 	title: "Dev Sculpt",
 };
 
-export default function RootLayout({
-	children,
-}: {
+interface RootLayoutProps {
 	children: React.ReactNode;
-}): JSX.Element {
+}
+
+export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
 	return (
 		<html lang="pt-BR">
-			<body className={inter.className}>
-				<MockProvider />
-				{children}
-			</body>
+			<body className={inter.className}>{children}</body>
 			<Toaster richColors />
+			<MswMocksProvider />
 		</html>
 	);
 }

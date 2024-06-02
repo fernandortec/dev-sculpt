@@ -12,10 +12,7 @@ import {
 	SettingsIcon,
 } from "lucide-react";
 
-export default async function Page() {
-	const opa = await fetch("https://api.example.com/user");
-	console.log(opa);
-
+export default function Page() {
 	return (
 		<>
 			<main className="relative isolate h-screen overflow-hidden">
