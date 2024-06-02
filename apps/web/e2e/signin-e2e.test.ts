@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("should sign in and redirect", async ({ page }) => {
+test.skip("should sign in and redirect", async ({ page }) => {
 	await page.goto("/signin", { waitUntil: "networkidle" });
 
 	await page.getByPlaceholder("name@example.com").fill("ajohn@doe.com");

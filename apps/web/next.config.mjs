@@ -2,6 +2,7 @@
 const nextConfig = {
 	experimental: {
 		reactCompiler: true,
+		instrumentationHook: true
 	},
 	transpilePackages: [
 		"@sculpt/env",

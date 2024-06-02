@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { MockProvider } from "../mocks/msw-provider";
 import "../public/global.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +16,10 @@ export default function RootLayout({
 }): JSX.Element {
 	return (
 		<html lang="pt-BR">
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<MockProvider />
+				{children}
+			</body>
 			<Toaster richColors />
 		</html>
 	);
