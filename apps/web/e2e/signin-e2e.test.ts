@@ -7,8 +7,7 @@ test("should sign in and redirect", async ({ page }) => {
 	await page.getByPlaceholder("********").fill("password");
 	await page.getByRole("button", { name: "Continuar", exact: true }).click();
 
-	await page.waitForTimeout(2000);
-
+	await page.waitForURL("dashboard");
 	expect(page.url()).toContain("/dashboard");
 });
 

@@ -7,7 +7,6 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import Icons from "@/public/assets/icons";
-
 import Link from "next/link";
 
 export default function SignUpPage() {

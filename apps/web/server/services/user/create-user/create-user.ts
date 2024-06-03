@@ -1,9 +1,9 @@
 "use server";
 
+import { fetcher } from "@/wrappers/fetch*";
 import type { HttpUser } from "@sculpt/drizzle";
 import type { CreateUser, CreateUserResponse } from "@sculpt/server";
 import { cookies } from "next/headers";
-import { fetcher } from "../../fetch-wrapper";
 
 export async function createUser({
 	avatarUrl,

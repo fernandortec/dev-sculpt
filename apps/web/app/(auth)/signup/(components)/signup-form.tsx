@@ -12,11 +12,12 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { safeParser } from "@/helpers/safe-parser";
+import { createUser } from "@/services/user/create-user/create-user";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import { toast } from "sonner";
+import { name } from "styled-jsx/css";
 import { z } from "zod";
-import { createUser } from "../../../../server/services/user/create-user";
 
 const signupSchema = z.object({
 	name: z.string(),
@@ -45,16 +46,19 @@ export function SignUpForm(): JSX.Element {
 
 		const { email, name, password, role } = data;
 
-		await createUser({
-			email,
-			name,
-			password,
-			role: role === "jobseeker" ? "jobseeker" : "recruiter",
-			avatarUrl: "https://somefakeurl.com",
-		});
-
-		toast.success("Conta criada com sucesso");
-		router.push("/dashboard");
+		try {
+			await createUser({
+				email,
+				name,
+				password,
+				role: role === "jobseeker" ? "jobseeker" : "recruiter",
+				avatarUrl: "https://somefakeurl.com",
+			});
+			toast.success("Login efetuado com sucesso!");
+			router.push("/dashboard");
+		} catch (err) {
+			toast.error("Credenciais inválidas!");
+		}
 
 		return prevState;
 	}
