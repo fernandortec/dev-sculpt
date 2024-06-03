@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.4.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
@@ -28,6 +29,7 @@
     "next-themes": "^0.3.0",
     "react": "^19.0.0-rc-6d3110b4d9-20240531",
     "react-dom": "^19.0.0-rc-6d3110b4d9-20240531",
+    "react-hook-form": "^7.51.5",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^4.0.0-alpha.15",

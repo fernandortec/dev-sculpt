@@ -1,7 +1,6 @@
 "use server";
 
-import { fetcher } from "@/wrappers/fetch*";
-import type { HttpUser } from "@sculpt/drizzle";
+import { type ServiceResponse, fetcher } from "@/wrappers/fetch*";
 import type { CreateUser, CreateUserResponse } from "@sculpt/server";
 import { cookies } from "next/headers";
 
@@ -11,18 +10,19 @@ export async function createUser({
 	name,
 	password,
 	role,
-}: CreateUser): Promise<HttpUser> {
-	const response = await fetcher<CreateUserResponse>("/users", {
+}: CreateUser): Promise<ServiceResponse> {
+	const createResponse = await fetcher<CreateUserResponse>("/users", {
 		method: "POST",
 		body: { avatarUrl, email, name, password, role },
 	});
-
-	const { user } = await response.json();
 
 	const authResponse = await fetcher("/auth/standard", {
 		method: "POST",
 		body: { email, password },
 	});
+
+	if (!createResponse.ok) return { error: createResponse.error };
+	if (!authResponse.ok) return { error: authResponse.error };
 
 	const { token } = await authResponse.json();
 
@@ -32,5 +32,5 @@ export async function createUser({
 		path: "/",
 	});
 
-	return user;
+	return { message: "Usuário criado com sucesso!" };
 }

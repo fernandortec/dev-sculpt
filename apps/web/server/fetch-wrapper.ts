@@ -1,6 +1,11 @@
 import { env } from "@sculpt/env";
 import { cookies } from "next/headers";
 
+export interface ServiceResponse {
+	message?: string;
+	error?: string;
+}
+
 interface FetcherRequest extends Omit<RequestInit, "body"> {
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
 	body: { [key: string]: unknown };
@@ -8,14 +13,17 @@ interface FetcherRequest extends Omit<RequestInit, "body"> {
 }
 
 interface FetcherResponse<T> extends Response {
+	ok: true;
 	json(): Promise<T>;
 }
+
+type HttpResponse<T> = { ok: false; error: string } | FetcherResponse<T>;
 
 // biome-ignore lint/suspicious/noExplicitAny:
 export async function fetcher<T = any>(
 	input: string | URL | globalThis.Request,
 	init?: FetcherRequest,
-): Promise<FetcherResponse<T>> {
+): Promise<HttpResponse<T>> {
 	const cookiesStore = cookies();
 	const authorization = cookiesStore.get("authorization");
 
@@ -40,7 +48,7 @@ export async function fetcher<T = any>(
 	if (!response.ok) {
 		const errorDetails = {
 			message: "The HTTP request encountered an error.",
-			response: response
+			response: response,
 		};
 
 		const errorMessage = `
@@ -50,8 +58,8 @@ export async function fetcher<T = any>(
     `;
 
 		console.error(errorDetails);
-		throw new Error("Request has failed", { cause: errorMessage });
+		return { ok: false, error: errorMessage };
 	}
 
-	return response;
+	return response as FetcherResponse<T>;
 }
