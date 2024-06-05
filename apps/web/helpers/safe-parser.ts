@@ -10,6 +10,5 @@ export function safeParser<T extends ZodSchema>(
 		toast.error("Dados inválidos");
 		throw new Error("Invalid data");
 	}
-
 	return data;
 }

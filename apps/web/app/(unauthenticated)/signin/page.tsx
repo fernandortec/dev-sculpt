@@ -1,5 +1,5 @@
-import { SignInForm } from "@/(auth)/signin/(components)/signin-form";
-import { SocialLoginsForm } from "@/(auth)/(components)/social-logins-form";
+import { SocialLoginsForm } from "@/(unauthenticated)/(components)/social-logins-form";
+import { SignInForm } from "@/(unauthenticated)/signin/(components)/signin-form";
 import { buttonVariants } from "@/components/ui/button";
 import Icons from "@/public/assets/icons";
 import Link from "next/link";
@@ -41,7 +41,8 @@ export default function AuthenticationPage() {
 							Entrar agora
 						</h1>
 						<p className="text-muted-foreground text-sm">
-							Preencha seu e-mail abaixo para entrar, ou utilize um dos logins sociais.
+							Preencha seu e-mail abaixo para entrar, ou utilize um dos logins
+							sociais.
 						</p>
 					</header>
 

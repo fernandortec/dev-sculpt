@@ -1,6 +1,6 @@
+import { MswMocksProvider } from "@/lib/msw/msw-provider";
 import "../public/global.css";
 
-import { MswMocksProvider } from "@/lib/msw/msw-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";

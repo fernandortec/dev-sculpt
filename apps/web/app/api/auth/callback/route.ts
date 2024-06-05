@@ -14,6 +14,8 @@ export async function GET(request: Request): Promise<void> {
 		body: { code },
 	});
 
+	if(!response.ok) throw new Error('opa')
+
 	const { token } = await response.json();
 
 	const cookieStore = cookies();

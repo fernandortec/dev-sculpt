@@ -1,5 +1,5 @@
-import { SocialLoginsForm } from "@/(auth)/(components)/social-logins-form";
-import { SignUpForm } from "@/(auth)/signup/(components)/signup-form";
+import { SocialLoginsForm } from "@/(unauthenticated)/(components)/social-logins-form";
+import { SignUpForm } from "@/(unauthenticated)/signup/(components)/signup-form";
 import {
 	Card,
 	CardContent,

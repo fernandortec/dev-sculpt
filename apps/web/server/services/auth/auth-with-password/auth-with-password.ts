@@ -13,6 +13,8 @@ export async function authWithPassword({
 		body: { email, password },
 	});
 
+	if(!response.ok) throw new Error('opa')
+
 	const { token } = await response.json();
 
 	const cookieStore = cookies();
