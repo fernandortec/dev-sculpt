@@ -17,6 +17,7 @@
 			"@/actions/*": ["./server/actions/*"],
 			"@/services/*": ["./server/services/*"],
 			"@/wrappers/fetch*": ["./server/fetch-wrapper"],
+			"@/services/types": ["./server/service-types"],
 
 			"@/modules/*": ["../server/src/modules/*"],
 			"@/shared/*": ["../server/src/shared/*"],

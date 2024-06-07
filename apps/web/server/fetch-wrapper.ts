@@ -1,11 +1,6 @@
 import { env } from "@sculpt/env";
 import { cookies } from "next/headers";
 
-export interface ServiceResponse {
-	message?: string;
-	error?: string;
-}
-
 interface FetcherRequest extends Omit<RequestInit, "body"> {
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
 	body: { [key: string]: unknown };
@@ -17,7 +12,12 @@ interface FetcherResponse<T> extends Response {
 	json(): Promise<T>;
 }
 
-type HttpResponse<T> = { ok: false; error: string } | FetcherResponse<T>;
+interface ErrorResponse {
+	ok: false;
+	error: string;
+}
+
+type HttpResponse<T> = ErrorResponse | FetcherResponse<T>;
 
 // biome-ignore lint/suspicious/noExplicitAny:
 export async function fetcher<T = any>(

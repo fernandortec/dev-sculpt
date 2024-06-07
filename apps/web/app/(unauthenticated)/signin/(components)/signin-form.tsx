@@ -1,9 +1,9 @@
 "use client";
 
-import { authWithPassword } from "@/services/auth/auth-with-password/auth-with-password";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { safeParser } from "@/helpers/safe-parser";
+import { authWithPassword } from "@/services/auth/auth-with-password/auth-with-password";
 import { Label } from "@radix-ui/react-label";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
@@ -32,13 +32,8 @@ export function SignInForm() {
 		const { data } = safeParser(inputSchema, rawData);
 		const { email, password } = data;
 
-		try {
-			await authWithPassword({ email, password });
-			toast.success("Login efetuado com sucesso!");
-			router.push("/dashboard");
-		} catch (err) {
-			toast.error("Credenciais inválidas!");
-		}
+		await authWithPassword({ email, password });
+		router.push("/dashboard");
 
 		return { email, password };
 	}

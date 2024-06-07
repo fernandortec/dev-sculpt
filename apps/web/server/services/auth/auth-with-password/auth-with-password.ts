@@ -1,5 +1,6 @@
 "use server";
 
+import { setToast } from "@/lib/toast/toast-provider";
 import { fetcher } from "@/wrappers/fetch*";
 import type { AuthWithPassword } from "@sculpt/server";
 import { cookies } from "next/headers";
@@ -13,7 +14,7 @@ export async function authWithPassword({
 		body: { email, password },
 	});
 
-	if(!response.ok) throw new Error('opa')
+	if (!response.ok) return setToast("error", "Error");
 
 	const { token } = await response.json();
 
@@ -22,4 +23,6 @@ export async function authWithPassword({
 		maxAge: 60 * 60 * 24 * 7,
 		path: "/",
 	});
+
+	setToast("success", "Logged in successfully!");
 }
