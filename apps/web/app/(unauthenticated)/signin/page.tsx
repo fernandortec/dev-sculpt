@@ -1,9 +1,9 @@
 import { SocialLoginsForm } from "@/(unauthenticated)/(components)/social-logins-form";
 import { SignInForm } from "@/(unauthenticated)/signin/(components)/signin-form";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/helpers/utils";
 import Icons from "@/public/assets/icons";
 import Link from "next/link";
-import { cn } from "../../../helpers/utils";
 
 export default function AuthenticationPage() {
 	return (

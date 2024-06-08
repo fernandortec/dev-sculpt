@@ -1,6 +1,7 @@
 "use server";
 
-import { type ServiceResponse, fetcher } from "@/wrappers/fetch*";
+import type { PlainServiceResponse } from "@/services/types";
+import { fetcher } from "@/wrappers/fetch*";
 import type { CreateUser, CreateUserResponse } from "@sculpt/server";
 import { cookies } from "next/headers";
 
@@ -10,8 +11,8 @@ export async function createUser({
 	name,
 	password,
 	role,
-}: CreateUser): Promise<ServiceResponse> {
-	const createResponse = await fetcher<CreateUserResponse>("/users", {
+}: CreateUser): Promise<PlainServiceResponse> {
+	await fetcher<CreateUserResponse>("/users", {
 		method: "POST",
 		body: { avatarUrl, email, name, password, role },
 	});
@@ -21,7 +22,6 @@ export async function createUser({
 		body: { email, password },
 	});
 
-	if (!createResponse.ok) return { error: createResponse.error };
 	if (!authResponse.ok) return { error: authResponse.error };
 
 	const { token } = await authResponse.json();
@@ -32,5 +32,5 @@ export async function createUser({
 		path: "/",
 	});
 
-	return { message: "Usuário criado com sucesso!" };
+	return { message: "Usuário criado com sucesso" };
 }

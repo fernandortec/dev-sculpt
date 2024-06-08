@@ -1,91 +1,108 @@
 "use client";
 
+import {
+	type SigninInputSchema,
+	signinInputSchema,
+} from "@/(unauthenticated)/signin/validators";
 import { Button } from "@/components/ui/button";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { safeParser } from "@/helpers/safe-parser";
 import { authWithPassword } from "@/services/auth/auth-with-password/auth-with-password";
-import { Label } from "@radix-ui/react-label";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useActionState } from "react";
-import { toast } from "sonner";
-import { z } from "zod";
-
-const inputSchema = z.object({
-	email: z.string().email(),
-	password: z.string().min(8),
-});
-
-type InputSchema = z.infer<typeof inputSchema>;
+import { useForm } from "react-hook-form";
 
 export function SignInForm() {
 	const router = useRouter();
-	const [_, formAction, isPending] = useActionState(submitAction, {
-		email: "",
-		password: "",
+	const form = useForm<SigninInputSchema>({
+		resolver: zodResolver(signinInputSchema),
+		defaultValues: { email: "", password: "" },
 	});
 
-	async function submitAction(
-		_: InputSchema,
-		formData: FormData,
-	): Promise<InputSchema> {
-		const rawData = Object.fromEntries(formData.entries());
-		const { data } = safeParser(inputSchema, rawData);
-		const { email, password } = data;
-
+	async function handleSignIn({
+		email,
+		password,
+	}: SigninInputSchema): Promise<void> {
 		await authWithPassword({ email, password });
 		router.push("/dashboard");
-
-		return { email, password };
 	}
 
 	return (
-		<form action={formAction} className={"grid gap-2"}>
-			<div className="grid gap-2">
-				<div className="grid gap-1">
-					<div>
-						<Label className="sr-only" htmlFor="email">
-							Email
-						</Label>
-						<Input
-							id="email"
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(handleSignIn)} className={"grid gap-2"}>
+				<div className="grid gap-2">
+					<div className="grid gap-1">
+						<FormField
+							control={form.control}
 							name="email"
-							placeholder="name@example.com"
-							type="email"
-							autoCapitalize="none"
-							autoComplete="email"
-							autoCorrect="off"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="sr-only" htmlFor="email">
+										Email
+									</FormLabel>
+									<FormControl>
+										<Input
+											id="email"
+											placeholder="name@example.com"
+											type="email"
+											autoCapitalize="none"
+											autoComplete="email"
+											autoCorrect="off"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
 						/>
-					</div>
-					<div>
-						<Label className="sr-only" htmlFor="password">
-							Senha
-						</Label>
-						<Input
-							id="password"
-							name="password"
-							placeholder="********"
-							type="password"
-							autoCapitalize="none"
-							autoComplete="current-password"
-							autoCorrect="off"
-						/>
-					</div>
-				</div>
-				<Button type="submit" disabled={isPending}>
-					Continuar
-				</Button>
-			</div>
 
-			<div className="relative text-gray-500">
-				<div className="absolute inset-0 flex items-center">
-					<span className="w-full border-t" />
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="sr-only" htmlFor="password">
+										Senha
+									</FormLabel>
+									<FormControl>
+										<Input
+											id="password"
+											placeholder="********"
+											type="password"
+											autoCapitalize="none"
+											autoComplete="current-password"
+											autoCorrect="off"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+					<Button type="submit" disabled={form.formState.isSubmitting}>
+						Continuar
+					</Button>
 				</div>
-				<div className="relative flex justify-center text-xs uppercase">
-					<span className="bg-background px-2 text-muted-foreground">
-						Ou continue com
-					</span>
+
+				<div className="relative text-gray-500">
+					<div className="absolute inset-0 flex items-center">
+						<span className="w-full border-t" />
+					</div>
+					<div className="relative flex justify-center text-xs uppercase">
+						<span className="bg-background px-2 text-muted-foreground">
+							Ou continue com
+						</span>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</Form>
 	);
 }

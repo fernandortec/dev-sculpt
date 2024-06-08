@@ -3,8 +3,13 @@ interface DefaultServiceResponse {
 	error?: string;
 }
 
-type DataServiceResponse<T> = T
+type DataServiceResponse<T> = T;
 
-export type ServiceResponse<T = void> = T extends void
+export type PlainServiceResponse<T = void> = T extends void
 	? DefaultServiceResponse
 	: DataServiceResponse<T>;
+
+export interface ServiceResponse<T> {
+	error?: string;
+	content?: T;
+}

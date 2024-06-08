@@ -5,6 +5,7 @@ interface FetcherRequest extends Omit<RequestInit, "body"> {
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
 	body: { [key: string]: unknown };
 	query?: { [key: string]: string };
+	errorToast?: string;
 }
 
 interface FetcherResponse<T> extends Response {
@@ -58,8 +59,9 @@ export async function fetcher<T = any>(
     `;
 
 		console.error(errorDetails);
-		return { ok: false, error: errorMessage };
+
+		throw new Error(errorMessage);
 	}
 
-	return response as FetcherResponse<T>;
+	return response as HttpResponse<T>;
 }

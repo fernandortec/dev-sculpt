@@ -1,5 +1,9 @@
 "use client";
 
+import {
+	type SignupSchema,
+	signupSchema,
+} from "@/(unauthenticated)/signup/validators";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -22,29 +26,18 @@ import { createUser } from "@/services/user/create-user/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-
-const signupSchema = z.object({
-	name: z.string(),
-	email: z.string().email(),
-	password: z.string().min(8),
-	role: z.enum(["jobseeker", "recruiter"]),
-});
-
-type SignupSchema = z.infer<typeof signupSchema>;
 
 export function SignUpForm(): JSX.Element {
 	const router = useRouter();
 	const form = useForm<SignupSchema>({
 		resolver: zodResolver(signupSchema),
-		defaultValues: { email: "", name: "", password: " ", role: "jobseeker" },
+		defaultValues: { email: "", name: "", password: "", role: "jobseeker" },
 	});
 
-	async function handleSignup(data: SignupSchema): Promise<unknown> {
+	async function handleSignup(data: SignupSchema): Promise<void> {
 		const { email, name, password, role } = data;
 
-		const response = await createUser({
+		await createUser({
 			email,
 			name,
 			password,
@@ -52,9 +45,6 @@ export function SignUpForm(): JSX.Element {
 			avatarUrl: "https://somefakeurl.com",
 		});
 
-		if (response.error) return toast.error("Credenciais inválidas!");
-
-		toast.success('Usuário criado com sucesso!');
 		router.push("/dashboard");
 	}
 

@@ -23,7 +23,7 @@ export default function SignUpPage() {
 						</h1>
 						<p className="text-muted-foreground text-xl">
 							Experience limitless possibilities with our cutting-edge cloud
-							solutions.  {" "}
+							solutions. {" "}
 						</p>
 					</div>
 					<blockquote className="relative hidden max-w-sm md:block">
