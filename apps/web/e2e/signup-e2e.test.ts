@@ -26,5 +26,5 @@ test("should pop up toast if credentials are invalid", async ({ page }) => {
 	await page.getByLabel("Estou procurando oportunidades").click();
 	await page.getByRole("button", { name: "Começar" }).click();
 
-	await expect(page.getByText("Credenciais inválidas!")).toBeVisible();
+	await expect(page.getByText("Houve um erro ao criar o usuário")).toBeVisible();
 });

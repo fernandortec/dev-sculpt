@@ -60,7 +60,7 @@ export async function fetcher<T = any>(
 
 		console.error(errorDetails);
 
-		throw new Error(errorMessage);
+		return { ok: false, error: errorMessage };
 	}
 
 	return response as HttpResponse<T>;

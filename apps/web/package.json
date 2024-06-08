@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --env-file=../../.env next dev",
-    "build": "NODE_ENV=production bun --env-file=../../.env next build",
-    "test:ui": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test --ui",
-    "test": "playwright test",
-    "start": "next start"
-  },
+			"dev": "bun --env-file=../../.env next dev",
+			"build": "NODE_ENV=production bun --env-file=../../.env next build",
+			"test:ui": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test --ui",
+			"test": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test",
+			"start": "next start"
+		},
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-label": "^2.0.2",
@@ -20,6 +20,7 @@
     "@sculpt/env": "workspace:*",
     "@sculpt/server": "workspace:*",
     "@tailwindcss/postcss": "^4.0.0-alpha.15",
+    "@tanstack/react-query": "^5.40.1",
     "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

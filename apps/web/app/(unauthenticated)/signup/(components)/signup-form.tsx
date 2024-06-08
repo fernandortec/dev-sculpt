@@ -4,6 +4,8 @@ import {
 	type SignupSchema,
 	signupSchema,
 } from "@/(unauthenticated)/signup/validators";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -24,6 +26,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { createUser } from "@/services/user/create-user/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -34,10 +37,14 @@ export function SignUpForm(): JSX.Element {
 		defaultValues: { email: "", name: "", password: "", role: "jobseeker" },
 	});
 
+	const { data: response, mutateAsync: createUserFn } = useMutation({
+		mutationFn: createUser,
+	});
+
 	async function handleSignup(data: SignupSchema): Promise<void> {
 		const { email, name, password, role } = data;
 
-		await createUser({
+		const { error } = await createUserFn({
 			email,
 			name,
 			password,
@@ -45,7 +52,7 @@ export function SignUpForm(): JSX.Element {
 			avatarUrl: "https://somefakeurl.com",
 		});
 
-		router.push("/dashboard");
+		if (!error) router.push("/dashboard");
 	}
 
 	return (
@@ -130,6 +137,9 @@ export function SignUpForm(): JSX.Element {
 						Começar
 					</Button>
 				</div>
+				
+				<FormError message={response?.error} />
+				<FormSuccess message={response?.message} />
 			</form>
 		</Form>
 	);

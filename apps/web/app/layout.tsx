@@ -1,4 +1,5 @@
 import { MswMocksProvider } from "@/lib/msw/msw-provider";
+import { ReactQueryProvider } from "@/lib/query/react-query-provider";
 import "../public/global.css";
 
 import type { Metadata } from "next";
@@ -16,7 +17,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
 	return (
 		<html lang="pt-BR">
-			<body className={inter.className}>{children}</body>
+			<ReactQueryProvider>
+				<body className={inter.className}>{children}</body>
+			</ReactQueryProvider>
 
 			<MswMocksProvider />
 		</html>

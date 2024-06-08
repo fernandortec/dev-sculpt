@@ -12,7 +12,7 @@ export async function createUser({
 	password,
 	role,
 }: CreateUser): Promise<PlainServiceResponse> {
-	await fetcher<CreateUserResponse>("/users", {
+	const response = await fetcher<CreateUserResponse>("/users", {
 		method: "POST",
 		body: { avatarUrl, email, name, password, role },
 	});
@@ -22,7 +22,8 @@ export async function createUser({
 		body: { email, password },
 	});
 
-	if (!authResponse.ok) return { error: authResponse.error };
+	if (!authResponse.ok || !response.ok)
+		return { error: "Houve um erro ao criar o usuário" };
 
 	const { token } = await authResponse.json();
 

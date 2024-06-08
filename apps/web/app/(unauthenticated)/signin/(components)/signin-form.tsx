@@ -4,6 +4,8 @@ import {
 	type SigninInputSchema,
 	signinInputSchema,
 } from "@/(unauthenticated)/signin/validators";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -16,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authWithPassword } from "@/services/auth/auth-with-password/auth-with-password";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -26,12 +29,16 @@ export function SignInForm() {
 		defaultValues: { email: "", password: "" },
 	});
 
+	const { data, mutateAsync: authWithPasswordFn } = useMutation({
+		mutationFn: authWithPassword,
+	});
+
 	async function handleSignIn({
 		email,
 		password,
 	}: SigninInputSchema): Promise<void> {
-		await authWithPassword({ email, password });
-		router.push("/dashboard");
+		const { error } = await authWithPasswordFn({ email, password });
+		if (!error) router.push("/dashboard");
 	}
 
 	return (
@@ -91,6 +98,9 @@ export function SignInForm() {
 						Continuar
 					</Button>
 				</div>
+
+				<FormError className="mt-0" message={data?.error} />
+				<FormSuccess className="mt-0" message={data?.message} />
 
 				<div className="relative text-gray-500">
 					<div className="absolute inset-0 flex items-center">
