@@ -46,7 +46,8 @@ jobs:
         run: bun install
 
       - name: Run migrations
-        run: bun db:migrate
+        run: bun ./src/migrate.ts
+        working-directory: ./packages/drizzle
 
       - name: Run tests
         run: bun run test:e2e
