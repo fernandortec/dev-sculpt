@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
-      - run: cd apps/server
       - run: bun install
+      - run: cd apps/server
       - run: bun run test:unit
