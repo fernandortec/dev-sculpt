@@ -4,8 +4,7 @@ import {
 	type SigninInputSchema,
 	signinInputSchema,
 } from "@/(unauthenticated)/signin/validators";
-import { FormError } from "@/components/form-error";
-import { FormSuccess } from "@/components/form-success";
+import { FormFeedback } from "@/components/form-feedback";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -29,7 +28,7 @@ export function SignInForm() {
 		defaultValues: { email: "", password: "" },
 	});
 
-	const { data, mutateAsync: authWithPasswordFn } = useMutation({
+	const { data: response, mutateAsync: authWithPasswordFn } = useMutation({
 		mutationFn: authWithPassword,
 	});
 
@@ -99,8 +98,11 @@ export function SignInForm() {
 					</Button>
 				</div>
 
-				<FormError className="mt-0" message={data?.error} />
-				<FormSuccess className="mt-0" message={data?.message} />
+				<FormFeedback
+					className="mt-0"
+					message={response?.message}
+					error={response?.error}
+				/>
 
 				<div className="relative text-gray-500">
 					<div className="absolute inset-0 flex items-center">

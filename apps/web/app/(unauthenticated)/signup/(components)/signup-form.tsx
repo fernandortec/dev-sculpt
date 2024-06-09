@@ -4,8 +4,7 @@ import {
 	type SignupSchema,
 	signupSchema,
 } from "@/(unauthenticated)/signup/validators";
-import { FormError } from "@/components/form-error";
-import { FormSuccess } from "@/components/form-success";
+import { FormFeedback } from "@/components/form-feedback";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -137,9 +136,8 @@ export function SignUpForm(): JSX.Element {
 						Começar
 					</Button>
 				</div>
-				
-				<FormError message={response?.error} />
-				<FormSuccess message={response?.message} />
+
+				<FormFeedback message={response?.message} error={response?.error} />
 			</form>
 		</Form>
 	);

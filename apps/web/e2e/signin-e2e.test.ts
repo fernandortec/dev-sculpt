@@ -11,7 +11,7 @@ test("should sign in and redirect", async ({ page }) => {
 	expect(page.url()).toContain("/dashboard");
 });
 
-test("should pop up toast if credentials are invalid", async ({ page }) => {
+test("should pop up error form message", async ({ page }) => {
 	await page.goto("/signin", { waitUntil: "networkidle" });
 
 	await page.getByPlaceholder("name@example.com").fill("notjohndoe@gmail.com");

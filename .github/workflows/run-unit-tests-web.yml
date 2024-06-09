@@ -1,0 +1,15 @@
+name: Run Unit Tests Web
+
+on: [push]
+
+jobs:
+  run-unit-tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: cd apps/web
+      - run: bun install
+      - run: bun run test:unit

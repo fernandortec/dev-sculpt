@@ -15,7 +15,7 @@ test("should sign up and redirect", async ({ page }) => {
 	expect(page.url()).toContain("/dashboard");
 });
 
-test("should pop up toast if credentials are invalid", async ({ page }) => {
+test("should pop up error form message", async ({ page }) => {
 	await page.goto("/signup", { waitUntil: "networkidle" });
 
 	await page.getByPlaceholder("Nome e sobrenome").fill("Not John Doe");
@@ -26,5 +26,7 @@ test("should pop up toast if credentials are invalid", async ({ page }) => {
 	await page.getByLabel("Estou procurando oportunidades").click();
 	await page.getByRole("button", { name: "Começar" }).click();
 
-	await expect(page.getByText("Houve um erro ao criar o usuário")).toBeVisible();
+	await expect(
+		page.getByText("Houve um erro ao criar o usuário"),
+	).toBeVisible();
 });
