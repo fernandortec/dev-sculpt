@@ -13,9 +13,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_USER: docker
           POSTGRESQL_PASSWORD: docker
-          POSTGRESQL_DATABASE: api
+          POSTGRESQL_DB: api
 
     steps:
       - name: Check out repository code
@@ -34,7 +34,7 @@ jobs:
         env:
           NODE_ENV: development
           JWT_SECRET: testing
-          DATABASE_URL: "postgresql://docker:docker@localhost:5432/api?schema=public"
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/api"
           API_BASE_URL: http://localhost:3001
           AUTH_REDIRECT_URL: http://localhost:3000
           GITHUB_OAUTH_CLIENT_ID: oauthclientid
