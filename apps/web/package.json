@@ -1,52 +1,53 @@
 {
-	"name": "web",
-	"version": "1.0.0",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"dev": "bun --env-file=../../.env next dev",
-		"build": "NODE_ENV=production bun --env-file=../../.env next build",
-		"test:e2e:ui": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test --ui",
-		"test:e2e": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test",
+  "name": "web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --env-file=../../.env next dev",
+    "build": "NODE_ENV=production bun --env-file=../../.env next build",
+    "test:e2e:ui": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test --ui",
+    "test:e2e": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test",
     "test:unit": "find ./app ./components -name '*.test.tsx' ! -name '*e2e.test.tsx' | xargs bun test",
-		"start": "next start"
-	},
-	"dependencies": {
-		"@hookform/resolvers": "^3.6.0",
-		"@radix-ui/react-label": "^2.0.2",
-		"@radix-ui/react-select": "^2.0.0",
-		"@radix-ui/react-separator": "^1.0.3",
-		"@radix-ui/react-slot": "^1.0.2",
-		"@sculpt/drizzle": "workspace:*",
-		"@sculpt/env": "workspace:*",
-		"@sculpt/server": "workspace:*",
-		"@tailwindcss/postcss": "^4.0.0-alpha.15",
-		"@tanstack/react-query": "^5.40.1",
-		"babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
-		"class-variance-authority": "^0.7.0",
-		"clsx": "^2.1.1",
-		"lucide-react": "^0.379.0",
-		"msw": "^2.3.1",
-		"next": "^15.0.0-canary.19",
-		"react": "^19.0.0-rc-f994737d14-20240522",
-		"react-dom": "^19.0.0-rc-f994737d14-20240522",
-		"react-hook-form": "^7.51.5",
-		"tailwind-merge": "^2.3.0",
-		"tailwindcss": "^4.0.0-alpha.15",
-		"zod": "^3.23.8"
-	},
-	"devDependencies": {
-		"@happy-dom/global-registrator": "^14.12.0",
-		"@playwright/test": "^1.44.1",
-		"@sculpt/tsconfig": "workspace:*",
-		"@testing-library/jest-dom": "^6.4.5",
-		"@testing-library/react": "^16.0.0",
-		"@testing-library/user-event": "^14.5.2",
-		"@types/react": "^18.3.3",
-		"@types/react-dom": "^18.3.0",
-		"typescript": "^5.4.5"
-	},
-	"msw": {
-		"workerDirectory": ["public"]
-	}
+    "start": "next start"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@sculpt/drizzle": "workspace:*",
+    "@sculpt/env": "workspace:*",
+    "@sculpt/server": "workspace:*",
+    "@tailwindcss/postcss": "^4.0.0-alpha.16",
+    "@tanstack/react-query": "^5.44.0",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.379.0",
+    "msw": "^2.3.1",
+    "next": "^15.0.0-canary.27",
+    "react": "^19.0.0-rc-f994737d14-20240522",
+    "react-dom": "^19.0.0-rc-f994737d14-20240522",
+    "react-hook-form": "^7.51.5",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^4.0.0-alpha.16",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@happy-dom/global-registrator": "^14.12.0",
+    "@playwright/test": "^1.44.1",
+    "@sculpt/tsconfig": "workspace:*",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.5"
+  },
+  "msw": {
+    "workerDirectory": ["public"]
+  }
 }

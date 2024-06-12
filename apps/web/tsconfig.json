@@ -24,14 +24,15 @@
 			"@/errors/*": ["../server/src/errors/*"],
 			"@/schemas/*": ["../../packages/drizzle/src/schemas/*"]
 		},
-		"jsx": "preserve"
+		"jsx": "react-jsx"
 	},
 	"include": [
 		"next-env.d.ts",
 		"next.config.mjs",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts"
+		".next/types/**/*.ts",
+		"./helpers/test/happydom.ts"
 	],
 	"exclude": ["node_modules"]
 }

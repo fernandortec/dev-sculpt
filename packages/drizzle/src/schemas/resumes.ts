@@ -7,7 +7,6 @@ export const resumes = pgTable("resumes", {
 	id: serial("id").primaryKey().notNull(),
 
 	skills: text("skills").array().notNull(),
-	emailForContact: text("email_for_contact").notNull().unique(),
 	phoneNumber: text("phone_number").unique(),
 
 	userId: text("user_id")

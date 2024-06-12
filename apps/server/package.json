@@ -12,7 +12,6 @@
     "@sculpt/drizzle": "workspace:*",
     "@sculpt/env": "workspace:*",
     "bcrypt-ts": "^5.0.2",
-    "dayjs": "^1.11.11",
     "drizzle-orm": "^0.30.10",
     "googleapis": "^137.1.0",
     "hono": "^4.4.0",
@@ -28,7 +27,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@sculpt/tsconfig": "workspace:*",
-    "typescript": "^5.4.5"
+    "@sculpt/tsconfig": "workspace:*"
   }
 }

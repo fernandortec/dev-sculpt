@@ -9,7 +9,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@sculpt/tsconfig": "workspace:*",
-    "@types/bun": "^1.1.3"
+    "@sculpt/tsconfig": "workspace:*"
   }
 }

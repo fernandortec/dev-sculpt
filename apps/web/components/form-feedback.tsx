@@ -21,7 +21,7 @@ export function FormFeedback({
 						className,
 					)}
 				>
-					<CheckCircle className="h-4 w-4" />
+					<CheckCircle data-testid="check" className="h-4 w-4" />
 					<p>{message}</p>
 				</div>
 			)}
@@ -33,7 +33,7 @@ export function FormFeedback({
 						className,
 					)}
 				>
-					<TriangleAlertIcon className="h-4 w-4" />
+					<TriangleAlertIcon data-testid="error" className="h-4 w-4" />
 					<p>{error}</p>
 				</div>
 			)}
