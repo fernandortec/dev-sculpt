@@ -17,11 +17,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
 	return (
 		<html lang="pt-BR">
-			<ReactQueryProvider>
-				<body className={inter.className}>{children}</body>
-			</ReactQueryProvider>
-
-			<MswMocksProvider />
+			<body className={inter.className}>
+				<ReactQueryProvider>{children}</ReactQueryProvider>
+				<MswMocksProvider />
+			</body>
 		</html>
 	);
 }

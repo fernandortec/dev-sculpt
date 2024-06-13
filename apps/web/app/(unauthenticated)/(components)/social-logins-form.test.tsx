@@ -1,7 +1,35 @@
-import { describe, expect, it } from "bun:test";
+import { beforeEach, describe, expect, it, mock } from "bun:test";
+import { SocialLoginsForm } from "@/(unauthenticated)/(components)/social-logins-form";
+import { render } from "@testing-library/react";
 
 describe("Social logins form unit", () => {
-	it("should render", () => {
-		expect(true).toBe(true);
+	const pushMock = mock();
+
+	mock.module("next/navigation", () => ({
+		useRouter: pushMock,
+	}));
+
+	beforeEach(() => {
+		pushMock.mockClear();
+	});
+
+	it("should render three social logins options", () => {
+		const wrapper = render(<SocialLoginsForm />);
+
+		expect(
+			wrapper.getByRole("button", {
+				name: /continuar com github/i,
+			}),
+		).toBeVisible();
+		expect(
+			wrapper.getByRole("button", {
+				name: /continuar com google/i,
+			}),
+		).toBeVisible();
+		expect(
+			wrapper.getByRole("button", {
+				name: /continuar com linkedin/i,
+			}),
+		).toBeVisible();
 	});
 });

@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production bun --env-file=../../.env next build",
     "test:e2e:ui": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test --ui",
     "test:e2e": "NEXT_PUBLIC_API_MOCKING=true bun --env-file=../../.env playwright test",
-    "test:unit": "find ./app ./components -name '*.test.tsx' ! -name '*e2e.test.tsx' | xargs bun test",
+    "test:unit": "find ./app ./components -name '*.test.tsx' ! -name '*e2e.test.tsx' | xargs bun --env-file=../../.env test",
     "start": "next start"
   },
   "dependencies": {
