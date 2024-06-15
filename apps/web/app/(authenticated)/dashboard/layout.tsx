@@ -1,4 +1,5 @@
-import { Header } from "@/(authenticated)/dashboard/(components)/header";
+import { Header } from "@/app/(components)/header";
+import { UserProvider } from "@/providers/user/user-provider";
 import type { ReactNode } from "react";
 
 interface LayoutProps {
@@ -8,8 +9,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps): JSX.Element {
 	return (
 		<>
-			<Header />
-			{children}
+			<UserProvider>
+				<Header />
+				{children}
+			</UserProvider>
 		</>
 	);
 }

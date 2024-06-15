@@ -1,66 +1,37 @@
 {
-  "extends": "@sculpt/tsconfig/nextjs.json",
-  "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": [
-        "./app/*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/mocks/*": [
-        "./e2e/mocks/*"
-      ],
-      "@/helpers/*": [
-        "./helpers/*"
-      ],
-      "@/actions/*": [
-        "./server/actions/*"
-      ],
-      "@/services/*": [
-        "./server/services/*"
-      ],
-      "@/wrappers/fetch*": [
-        "./server/fetch-wrapper"
-      ],
-      "@/services/types": [
-        "./server/service-types"
-      ],
-      "@/modules/*": [
-        "../server/src/modules/*"
-      ],
-      "@/shared/*": [
-        "../server/src/shared/*"
-      ],
-      "@/errors/*": [
-        "../server/src/errors/*"
-      ],
-      "@/schemas/*": [
-        "../../packages/drizzle/src/schemas/*"
-      ]
-    },
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "next.config.mjs",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./helpers/test/happydom.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"extends": "@sculpt/tsconfig/nextjs.json",
+	"compilerOptions": {
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"paths": {
+			"@/providers/*": ["./providers/*"],
+			"@/public/*": ["./public/*"],
+			"@/components/*": ["./components/*"],
+			"@/mocks/*": ["./e2e/mocks/*"],
+			"@/helpers/*": ["./helpers/*"],
+			"@/actions/*": ["./server/actions/*"],
+			"@/services/*": ["./server/services/*"],
+			"@/wrappers/fetch*": ["./server/fetch-wrapper"],
+			"@/services/types": ["./server/service-types"],
+			"@/modules/*": ["../server/src/modules/*"],
+			"@/shared/*": ["../server/src/shared/*"],
+			"@/errors/*": ["../server/src/errors/*"],
+			"@/schemas/*": ["../../packages/drizzle/src/schemas/*"],
+			"@/app/*": ["./app/(authenticated)/dashboard/*"],
+			"@/*": ["./app/*"]
+		},
+		"jsx": "preserve"
+	},
+	"include": [
+		"next-env.d.ts",
+		"next.config.mjs",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"./helpers/test/happydom.ts"
+	],
+	"exclude": ["node_modules"]
 }

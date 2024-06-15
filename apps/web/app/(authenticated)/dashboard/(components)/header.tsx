@@ -1,4 +1,5 @@
-import { UserDropdown } from "@/(authenticated)/dashboard/(components)/user-dropdown";
+import { CountriesDropdown } from "@/app/(components)/countries-dropdown";
+import { UserDropdown } from "@/app/(components)/user-dropdown";
 import { Input } from "@/components/ui/input";
 import Icons from "@/public/assets/icons";
 import Link from "next/link";
@@ -19,6 +20,8 @@ export function Header(): JSX.Element {
 					Empresas
 				</Link>
 			</nav>
+
+			<CountriesDropdown />
 			<UserDropdown />
 		</header>
 	);

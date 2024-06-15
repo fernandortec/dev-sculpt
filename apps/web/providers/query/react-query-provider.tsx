@@ -1,8 +1,6 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// biome-ignore lint/style/useImportType:
-import React from "react";
 import { useState } from "react";
 
 export function ReactQueryProvider({

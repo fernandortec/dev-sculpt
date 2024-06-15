@@ -1,5 +1,5 @@
-import { MswMocksProvider } from "@/lib/msw/msw-provider";
-import { ReactQueryProvider } from "@/lib/query/react-query-provider";
+import { MswMocksProvider } from "@/providers/msw/msw-provider";
+import { ReactQueryProvider } from "@/providers/query/react-query-provider";
 import "../public/global.css";
 
 import type { Metadata } from "next";
