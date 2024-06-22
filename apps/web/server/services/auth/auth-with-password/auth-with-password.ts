@@ -12,7 +12,6 @@ export async function authWithPassword({
 	const response = await fetcher("/auth/standard", {
 		method: "POST",
 		body: { email, password },
-		errorToast: "Credenciais inválidas!",
 	});
 
 	if (!response.ok) return { error: "Credenciais inválidas!" };

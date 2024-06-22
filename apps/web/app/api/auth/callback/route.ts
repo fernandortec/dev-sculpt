@@ -1,6 +1,6 @@
+import { fetcher } from "@/wrappers/fetch*";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { fetcher } from "../../../../server/fetch-wrapper";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,7 @@ export async function GET(request: Request): Promise<void> {
 		body: { code },
 	});
 
-	if(!response.ok) throw new Error('opa')
+	if (!response.ok) throw new Error("opa");
 
 	const { token } = await response.json();
 

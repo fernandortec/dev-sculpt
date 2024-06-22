@@ -8,7 +8,7 @@ export function MswMocksProvider(): null {
 		}
 	}
 
-	if (typeof process.env.NEXT_PUBLIC_API_MOCKING === "boolean") {
+	if (process.env.NEXT_PUBLIC_API_MOCKING === "true") {
 		initMocks();
 	}
 

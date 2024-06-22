@@ -8,13 +8,13 @@
     ".": "./src/shared/public-schemas.ts"
   },
   "dependencies": {
-    "@hono/zod-validator": "^0.2.1",
+    "@hono/zod-validator": "^0.2.2",
     "@sculpt/drizzle": "workspace:*",
     "@sculpt/env": "workspace:*",
     "bcrypt-ts": "^5.0.2",
     "drizzle-orm": "^0.30.10",
     "googleapis": "^137.1.0",
-    "hono": "^4.4.0",
+    "hono": "^4.4.7",
     "ulid": "^2.3.0",
     "zod": "^3.23.8"
   },

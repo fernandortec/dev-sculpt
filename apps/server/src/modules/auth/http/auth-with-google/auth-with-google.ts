@@ -3,7 +3,7 @@ import {
 	makeGetGoogleUserUseCase,
 	makeGetOrCreateAccountUseCase,
 } from "@/modules/auth/use-cases/factories";
-import type { JSONResponse } from "@/shared/hono";
+import type { JSONResponse } from "@/shared/hono-types";
 
 import { zValidator } from "@hono/zod-validator";
 import { env } from "@sculpt/env";
