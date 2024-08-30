@@ -4,7 +4,7 @@ import { type InferSelectModel, relations } from "drizzle-orm";
 import { pgTable, serial, text } from "drizzle-orm/pg-core";
 
 export const resumeToStage = pgTable("resumes_to_stages", {
-	resumeId: serial("user_id")
+	resumeId: serial("resume_id")
 		.notNull()
 		.references(() => resumes.id, { onDelete: "cascade" })
 		.notNull(),

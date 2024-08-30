@@ -1,7 +1,7 @@
 {
-  "id": "3aa107c2-29ab-4233-a4a8-2382615e122c",
+  "id": "703a9aae-696d-4fd7-ba10-53eb9187cc65",
   "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "6",
+  "version": "7",
   "dialect": "postgresql",
   "tables": {
     "public.users": {
@@ -320,12 +320,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "email_for_contact": {
-          "name": "email_for_contact",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
         "phone_number": {
           "name": "phone_number",
           "type": "text",
@@ -357,13 +351,6 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "resumes_email_for_contact_unique": {
-          "name": "resumes_email_for_contact_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email_for_contact"
-          ]
-        },
         "resumes_phone_number_unique": {
           "name": "resumes_phone_number_unique",
           "nullsNotDistinct": false,
@@ -439,8 +426,8 @@
       "name": "resumes_to_stages",
       "schema": "",
       "columns": {
-        "user_id": {
-          "name": "user_id",
+        "resume_id": {
+          "name": "resume_id",
           "type": "serial",
           "primaryKey": false,
           "notNull": true
@@ -454,12 +441,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "resumes_to_stages_user_id_resumes_id_fk": {
-          "name": "resumes_to_stages_user_id_resumes_id_fk",
+        "resumes_to_stages_resume_id_resumes_id_fk": {
+          "name": "resumes_to_stages_resume_id_resumes_id_fk",
           "tableFrom": "resumes_to_stages",
           "tableTo": "resumes",
           "columnsFrom": [
-            "user_id"
+            "resume_id"
           ],
           "columnsTo": [
             "id"
@@ -578,10 +565,23 @@
         "accounts_provider_user_id_unique": {
           "name": "accounts_provider_user_id_unique",
           "columns": [
-            "provider",
-            "user_id"
+            {
+              "expression": "provider",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {

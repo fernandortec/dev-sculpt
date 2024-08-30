@@ -81,10 +81,8 @@ CREATE TABLE IF NOT EXISTS "jobs" (
 CREATE TABLE IF NOT EXISTS "resumes" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"skills" text[] NOT NULL,
-	"email_for_contact" text NOT NULL,
 	"phone_number" text,
 	"user_id" text NOT NULL,
-	CONSTRAINT "resumes_email_for_contact_unique" UNIQUE("email_for_contact"),
 	CONSTRAINT "resumes_phone_number_unique" UNIQUE("phone_number")
 );
 --> statement-breakpoint
@@ -98,7 +96,7 @@ CREATE TABLE IF NOT EXISTS "stages" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "resumes_to_stages" (
-	"user_id" serial NOT NULL,
+	"resume_id" serial NOT NULL,
 	"stage_id" text NOT NULL
 );
 --> statement-breakpoint
@@ -155,7 +153,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "resumes_to_stages" ADD CONSTRAINT "resumes_to_stages_user_id_resumes_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."resumes"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "resumes_to_stages" ADD CONSTRAINT "resumes_to_stages_resume_id_resumes_id_fk" FOREIGN KEY ("resume_id") REFERENCES "public"."resumes"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -178,4 +176,4 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "accounts_provider_user_id_unique" ON "accounts" ("provider","user_id");
+CREATE UNIQUE INDEX IF NOT EXISTS "accounts_provider_user_id_unique" ON "accounts" USING btree ("provider","user_id");
