@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export async function getProfile(): Promise<{ user: User }> {
 	const response = await fetcher("/users/me");
-	if (!response.ok) return redirect("/signin")
+	if (!response.ok) return redirect("/signin");
 
 	const user = await response.json();
 

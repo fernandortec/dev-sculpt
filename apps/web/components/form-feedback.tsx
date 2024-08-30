@@ -2,8 +2,8 @@ import { cn } from "@/helpers/utils";
 import { CheckCircle, TriangleAlertIcon } from "lucide-react";
 
 interface FormFeedbackProps {
-	message?: string;
-	error?: string;
+	message?: string | null;
+	error?: string | null;
 	className?: string;
 }
 

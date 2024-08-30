@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	experimental: {
-		reactCompiler: true,
-		instrumentationHook: true
-	},
+	experimental: { reactCompiler: true },
 	transpilePackages: [
 		"@sculpt/env",
 		"@sculpt/drizzle",

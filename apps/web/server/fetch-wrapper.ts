@@ -1,9 +1,8 @@
 import { env } from "@sculpt/env";
-import { cookies } from "next/headers";
 
 interface FetcherRequest extends Omit<RequestInit, "body"> {
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
-	body: { [key: string]: unknown };
+	body: unknown;
 	query?: { [key: string]: string };
 	errorToast?: string;
 }
@@ -13,32 +12,26 @@ interface FetcherResponse<T> extends Response {
 	json(): Promise<T>;
 }
 
-interface ErrorResponse {
-	ok: false;
-	error: string;
-}
-
-type HttpResponse<T> = ErrorResponse | FetcherResponse<T>;
-
 // biome-ignore lint/suspicious/noExplicitAny:
 export async function fetcher<T = any>(
 	input: string | URL | globalThis.Request,
 	init?: FetcherRequest,
-): Promise<HttpResponse<T>> {
-	const cookiesStore = cookies();
-	const authorization = cookiesStore.get("authorization");
-
+): Promise<FetcherResponse<T>> {
 	const parsedInit: RequestInit = {
 		...init,
 		body: JSON.stringify(init?.body),
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: authorization?.value ?? "",
 			...init?.headers,
 		},
 	};
 
-	const baseURL = new URL(`${env.API_BASE_URL}${input}`);
+	const baseURL = new URL(
+		typeof input === "string" && input.includes("http")
+			? input
+			: `${env.API_BASE_URL}${input}`,
+	);
+
 	if (init?.query) {
 		for (const key of Object.keys(init.query)) {
 			baseURL.searchParams.append(key, String(init.query[key]));
@@ -60,8 +53,8 @@ export async function fetcher<T = any>(
 
 		console.error(errorDetails);
 
-		return { ok: false, error: errorMessage };
+		throw new Error(errorMessage);
 	}
 
-	return response as HttpResponse<T>;
+	return response as FetcherResponse<T>;
 }

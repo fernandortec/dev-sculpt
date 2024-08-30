@@ -1,6 +1,5 @@
 "use server";
 
-import type { PlainServiceResponse } from "@/services/types";
 import { fetcher } from "@/wrappers/fetch";
 import type { AuthWithPassword } from "@sculpt/server";
 import { cookies } from "next/headers";
@@ -8,13 +7,11 @@ import { cookies } from "next/headers";
 export async function authWithPassword({
 	email,
 	password,
-}: AuthWithPassword): Promise<PlainServiceResponse> {
+}: AuthWithPassword): Promise<{ message: string }> {
 	const response = await fetcher("/auth/standard", {
 		method: "POST",
 		body: { email, password },
 	});
-
-	if (!response.ok) return { error: "Credenciais inválidas!" };
 
 	const { token } = await response.json();
 

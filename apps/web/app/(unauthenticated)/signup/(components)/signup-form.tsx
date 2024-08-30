@@ -36,22 +36,26 @@ export function SignUpForm(): JSX.Element {
 		defaultValues: { email: "", name: "", password: "", role: "jobseeker" },
 	});
 
-	const { data: response, mutateAsync: createUserFn } = useMutation({
+	const {
+		data: response,
+		error: signUpError,
+		mutateAsync: createUserFn,
+	} = useMutation({
 		mutationFn: createUser,
 	});
 
 	async function handleSignup(data: SignupSchema): Promise<void> {
 		const { email, name, password, role } = data;
 
-		const { error } = await createUserFn({
+		await createUserFn({
+			role: role === "jobseeker" ? "jobseeker" : "recruiter",
 			email,
 			name,
 			password,
-			role: role === "jobseeker" ? "jobseeker" : "recruiter",
 			avatarUrl: "https://somefakeurl.com",
 		});
 
-		if (!error) router.push("/dashboard");
+		if (!signUpError) router.push("/dashboard");
 	}
 
 	return (
@@ -137,7 +141,10 @@ export function SignUpForm(): JSX.Element {
 					</Button>
 				</div>
 
-				<FormFeedback message={response?.message} error={response?.error} />
+				<FormFeedback
+					message={response?.message}
+					error={signUpError?.message ?? "Houve um erro ao criar o usuário"}
+				/>
 			</form>
 		</Form>
 	);

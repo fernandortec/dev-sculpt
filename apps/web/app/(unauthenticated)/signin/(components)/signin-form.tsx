@@ -28,7 +28,11 @@ export function SignInForm() {
 		defaultValues: { email: "", password: "" },
 	});
 
-	const { data: response, mutateAsync: authWithPasswordFn } = useMutation({
+	const {
+		data: response,
+		error: authError,
+		mutateAsync: authWithPasswordFn,
+	} = useMutation({
 		mutationFn: authWithPassword,
 	});
 
@@ -36,8 +40,9 @@ export function SignInForm() {
 		email,
 		password,
 	}: SigninInputSchema): Promise<void> {
-		const { error } = await authWithPasswordFn({ email, password });
-		if (!error) {
+		await authWithPasswordFn({ email, password });
+
+		if (!authError) {
 			router.push("/dashboard");
 			router.refresh();
 		}
@@ -104,7 +109,7 @@ export function SignInForm() {
 				<FormFeedback
 					className="mt-0"
 					message={response?.message}
-					error={response?.error}
+					error={authError?.message ?? "Credenciais inválidas!"}
 				/>
 
 				<div className="relative text-gray-500">

@@ -1,5 +1,3 @@
-/// <reference lib="dom" />
-
 import { describe, expect, it } from "bun:test";
 import { FormFeedback } from "@/components/form-feedback";
 import { render } from "@testing-library/react";
@@ -13,6 +11,7 @@ describe("Form feedback", () => {
 		expect(icon).toBeVisible();
 		expect(message).toBeVisible();
 	});
+
 	it("should render an error feedback", () => {
 		const wrapper = render(<FormFeedback error="Invalid credentials" />);
 		const message = wrapper.getByText("Invalid credentials");
