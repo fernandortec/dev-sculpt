@@ -2,15 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import Icons from "@/public/assets/icons";
+import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url/generate-oauth-provider-url";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
-import { generateOauthProviderUrl } from "@/services/auth/generate-oauth-provider-url/generate-oauth-provider-url";
 
 export function SocialLoginsForm(): JSX.Element {
 	const router = useRouter();
 	const [_, formAction, isPending] = useActionState(submitAction, "");
 
-	async function submitAction(_: string, formData: FormData) {
+	async function submitAction(_: string, formData: FormData): Promise<string> {
 		const githubPressed = formData.get("github");
 		const linkedinPressed = formData.get("linkedin");
 		const googlePressed = formData.get("google");

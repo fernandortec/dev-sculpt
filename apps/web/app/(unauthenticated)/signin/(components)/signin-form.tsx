@@ -37,7 +37,10 @@ export function SignInForm() {
 		password,
 	}: SigninInputSchema): Promise<void> {
 		const { error } = await authWithPasswordFn({ email, password });
-		if (!error) router.push("/dashboard");
+		if (!error) {
+			router.push("/dashboard");
+			router.refresh();
+		}
 	}
 
 	return (

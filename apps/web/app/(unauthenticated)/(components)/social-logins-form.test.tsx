@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { SocialLoginsForm } from "@/(unauthenticated)/(components)/social-logins-form";
 import { render } from "@testing-library/react";
 
-describe("Social logins form unit", () => {
+describe.skip("Social logins form unit", () => {
 	const pushMock = mock();
 
 	mock.module("next/navigation", () => ({

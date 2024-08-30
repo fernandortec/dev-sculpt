@@ -13,7 +13,7 @@
   "packageManager": "bun@1.1.12",
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
-    "turbo": "^2.0.3"
+    "turbo": "^2.1.0"
   },
   "workspaces": ["apps/*", "packages/*"],
   "config": {
